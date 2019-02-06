@@ -34,3 +34,12 @@ From what I can tell, most read requests are pretty cheap as far as quota goes, 
 * https://developers.google.com/youtube/v3/docs/search/list# 
     * (check link to "see topic IDs supported as of")
     * seems searching by topic might be more expensive on the quota costing 100 units but so far when I've used it it defaults to the cost of the resource parts (part:snippet, contentDetails, etc.)
+* http://www.channelcrawler.com/
+
+## Questions to ask the data:
+
+* subscriber count versus upload frequency
+* subscriber count versus video duration
+* slice across genre/category
+* connect to viewers through comments 
+    * count frequency of mention of particular geographical keywords to try and infer a correlation
