@@ -25,3 +25,12 @@ From what I can tell, most read requests are pretty cheap as far as quota goes, 
 * https://www.shivarweb.com/4277/scrape-export-video-information-youtube/
 * https://developers.google.com/apis-explorer/#p/youtube/v3/
 * https://en.wikipedia.org/wiki/List_of_JavaScript_libraries
+* https://github.com/rohitkhatri/youtube-python
+* https://developers.google.com/youtube/v3/docs/videos
+* https://developers.google.com/youtube/v3/docs/channels/list
+* https://developers.google.com/youtube/v3/docs/videos/list
+* https://developers.google.com/youtube/v3/docs/guideCategories/list
+* https://developers.google.com/youtube/v3/docs/activities/list
+* https://developers.google.com/youtube/v3/docs/search/list# 
+    * (check link to "see topic IDs supported as of")
+    * seems searching by topic might be more expensive on the quota costing 100 units but so far when I've used it it defaults to the cost of the resource parts (part:snippet, contentDetails, etc.)
