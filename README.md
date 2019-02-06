@@ -35,6 +35,8 @@ From what I can tell, most read requests are pretty cheap as far as quota goes, 
     * (check link to "see topic IDs supported as of")
     * seems searching by topic might be more expensive on the quota costing 100 units but so far when I've used it it defaults to the cost of the resource parts (part:snippet, contentDetails, etc.)
 * http://www.channelcrawler.com/
+* https://socialblade.com/youtube/top/trending/top-500-channels-30-days/most-subscribed
+* https://gizmodo.com/how-to-find-almost-anything-on-youtube-1796098012
 
 ## Questions to ask the data:
 
