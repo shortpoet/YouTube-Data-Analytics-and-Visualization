@@ -37,6 +37,7 @@ From what I can tell, most read requests are pretty cheap as far as quota goes, 
 * http://www.channelcrawler.com/
 * https://socialblade.com/youtube/top/trending/top-500-channels-30-days/most-subscribed
 * https://gizmodo.com/how-to-find-almost-anything-on-youtube-1796098012
+* https://gist.github.com/stpe/2951130dfc8f1d0d1a2ad736bef3b703
 
 ## Questions to ask the data:
 
