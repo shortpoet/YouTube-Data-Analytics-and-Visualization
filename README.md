@@ -40,6 +40,9 @@ From what I can tell, most read requests are pretty cheap as far as quota goes, 
 * https://gist.github.com/stpe/2951130dfc8f1d0d1a2ad736bef3b703
 * https://socialblade.com/youtube/education
     * "courses" offered free to aspiring youtubers.  we can prob get hints about what to look for in the data
+* https://www.youtube.com/watch?v=wf_77z1H-vQ
+    * YT devs discussing freebase (dated but interesting)
+    * https://developers.google.com/freebase/
 
 ## Questions to ask the data:
 
