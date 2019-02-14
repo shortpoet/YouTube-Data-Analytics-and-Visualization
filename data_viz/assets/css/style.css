@@ -1,19 +1,45 @@
 
+.iframeContainer {
+  padding: 20px;
+  border: 1px solid #e3e3e3;
+}
+
+
+
+
+
+
 html,
 body{
   height: 100%;
   padding: 0;
   margin: 0;
-  background: rgb(119, 182, 241);
-  background: linear-gradient(90deg, rgb(141, 183, 202) 0%, rgb(243, 243, 243) 47%, rgb(253, 195, 120) 100%);
+  background: #B9DCC7;
+  position: relative;
+  padding-bottom: 80px;
+  /* Padding bottom by footer height */
+}  
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%; /* Set the fixed height of the footer here */
+  height: 10px;
+  padding-top: 20px;
+  padding-bottom: 40px;
+  text-align: center;
+  background-color: #f5f5f5;
 }
+
+#footer p {
+  margin: 0;
+  font-size: 16px;
+}
+
 
 .text-center{
   text-align: center;
   font-family: 'Amatic SC', cursive;
-  font-size: 25px;
-  text-shadow: 2px 2px rgb(139, 139, 139);
-  border: 10px solid black;
+  font-size: 25px
 }
 
 h1{
