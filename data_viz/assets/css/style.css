@@ -15,7 +15,7 @@ body{
 }
 
 #footer {
-  position: absolute;
+  position: relative;
   bottom: 0;
   width: 100%; /* Set the fixed height of the footer here */
   height: 10px;
@@ -39,4 +39,8 @@ body{
 
 h1{
   font-family: 'Amatic SC', cursive;
+}
+
+#container {
+  height:100%;
 }
