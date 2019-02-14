@@ -1,45 +1,40 @@
-from flask import Flask, render_template, redirect, Markup, url_for
+from flask import Flask, render_template, redirect, Markup, url_for, jsonify
 from flask_pymongo import PyMongo
-import scrape_mars
-from mars_facts_table import scrape_table
-from mars_rover import scrape_rover
+from bson import json_util
+import json
 
 app = Flask(__name__)
 
-# Use PyMongo to establish Mongo connection
-mongo = PyMongo(app, uri="mongodb://localhost:27017/mars_app")
+
+# Use flask_pymongo to set up mongo connection
+app.config["MONGO_URI"] = "mongodb://localhost:27017/social_blade"
+mongo = PyMongo(app)
+
+# Or set inline
+# mongo = PyMongo(app, uri="mongodb://localhost:27017/social_blade")
+
 
 
 # Route to render index.html template using data from Mongo
 @app.route("/")
 def home():
 
-    # Find one record of data from the mongo database
-    destination_data = mongo.db.collection.find_one()
-    table_string = scrape_table()
-    rover_string = scrape_rover()
+    return render_template("index.html")
 
-    # Return template and data
-    #print(destination_data)
-    return render_template("index.html", mars=destination_data, table=table_string, rover=rover_string)
+@app.route("/asmr_channels")
+def asmr_channels():
+    # for i in mongo.db.social_blade_asmr_data.find():
+    #     asmr_data = json.dumps(i, indent=4, default=json_util.default)
 
-# Route that will trigger the scrape function
-@app.route("/scrape")
-def scrape():
+    asmr_data = mongo.db.social_blade_asmr_data.find_one({}, {'_id': False})
 
-    # Run the scrape function
-    mars_data = scrape_mars.scrape_info()
-    print(mars_data)
-    # Update the Mongo database using update and upsert=True
-    mongo.db.collection.update({}, mars_data, upsert=True)
-    #test_data = mongo.db.collection.find_one()
-    #print(test_data)
-    # Redirect back to home page
-    return redirect("/")
+    return jsonify(asmr_data)
 
-@app.route("/status_spirit.html#recient")
-def redir1():
-    return redirect(url_for("https://mars.nasa.gov/mer/mission/status_spirit.html#recient"))
+
+# @app.route("/status_spirit.html#recient")
+# def redir1():
+#     return redirect(url_for("https://mars.nasa.gov/mer/mission/status_spirit.html#recient"))
 
 if __name__ == "__main__":
     app.run(host='127.0.0.1', port='5000', debug=True)
+

@@ -143,18 +143,23 @@ function average(dataset, column) {
   return (dataset.reduce((a,b) => a + b))/dataset.length
 }
 
-d3.csv('assets/data/sb_asmr_data.json').then(function(asmrData) {
-  asmrData.forEach(data => {
-      var uploads = +data.uploads
-      var subscribers = +data.subs
-      var views = +data.views
-      var channel_name = data.channel_name
-
-      var diff_hours = now - new Date('2015-08-14T00:00:00')/1000/3600/24
-
+d3.json('asmr_channels').then(function(asmrData) {
+  Object.entries(asmrData).forEach((k,v) => {
+    var channel_name = k['channel_name']
   })
+  
+  // asmrData.forEach(data => {
+  //     var uploads = +data.uploads
+  //     var subscribers = +data.subs
+  //     var views = +data.views
+  //     var channel_name = data.channel_name
+
+  //     var diff_hours = now - new Date('2015-08-14T00:00:00')/1000/3600/24
+
+  // })
   console.log(asmrData)
-    // var headers = d3.keys(asmrData[0])
+  var headers = d3.keys(asmrData['Angelica'])
+  console.log(headers)
     // headers = headers.slice(1,4).concat(headers.slice(5,6)).concat(headers.slice(7,8)).concat(headers.slice(9,10)).concat(headers.slice(12,13)).concat(headers.slice(15,16))
     // var table = d3.select('.data').append('table').classed('table table-striped table-sortable', true)
     // var thead = table.append('thead')
