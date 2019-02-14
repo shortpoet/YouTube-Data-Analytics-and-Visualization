@@ -33,7 +33,6 @@ body{
   text-align: center;
   font-family: 'Amatic SC', cursive;
   font-size: 25px;
-  text-shadow: 2px 2px rgb(139, 139, 139);
   border: 10px solid black;
 }
 
@@ -44,3 +43,4 @@ h1{
 #container {
   height:100%;
 }
+
