@@ -36,6 +36,10 @@ def asmr_channels():
 def table():
     return render_template("table.html")
 
+@app.route("/line")
+def line():
+    return render_template("line.html")
+
 # @app.route("/status_spirit.html#recient")
 # def redir1():
 #     return redirect(url_for("https://mars.nasa.gov/mer/mission/status_spirit.html#recient"))
