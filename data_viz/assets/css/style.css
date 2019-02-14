@@ -4,13 +4,16 @@ body{
   height: 100%;
   padding: 0;
   margin: 0;
-  background: #B9DCC7  
+  background: rgb(119, 182, 241);
+  background: linear-gradient(90deg, rgb(141, 183, 202) 0%, rgb(243, 243, 243) 47%, rgb(253, 195, 120) 100%);
 }
 
 .text-center{
   text-align: center;
   font-family: 'Amatic SC', cursive;
-  font-size: 25px
+  font-size: 25px;
+  text-shadow: 2px 2px rgb(139, 139, 139);
+  border: 10px solid black;
 }
 
 h1{
