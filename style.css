@@ -4,8 +4,8 @@ body{
   height: 100%;
   padding: 0;
   margin: 0;
-  background: rgb(167,235,210);
-  background: linear-gradient(90deg, rgba(167,235,210,1) 0%, rgba(185,231,229,1) 47%, rgba(255,158,158,1) 100%);
+  background: rgb(119, 182, 241);
+  background: linear-gradient(90deg, rgb(141, 183, 202) 0%, rgb(243, 243, 243) 47%, rgb(253, 195, 120) 100%);
 }
 
 .text-center{
