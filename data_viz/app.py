@@ -2,6 +2,8 @@ from flask import Flask, render_template, redirect, Markup, url_for, jsonify
 from flask_pymongo import PyMongo
 from bson import json_util
 import json
+import re
+from datetime import datetime as dt
 
 app = Flask(__name__)
 
@@ -30,6 +32,13 @@ def asmr_channels():
     asmr_data = []
     for channel, data in db_response.items():
         asmr_data.append(data)
+    for datum in asmr_data:
+        datum['date_created'] = re.sub(r'th,', '', datum['date_created'])
+        datum['date_created'] = re.sub(r'st,', '', datum['date_created'])
+        datum['date_created'] = re.sub(r'nd,', '', datum['date_created'])
+        datum['date_created'] = re.sub(r'rd,', '', datum['date_created']).strip()
+        datum['date_created'] = dt.strptime(datum['date_created'], '%b %d %Y').isoformat()
+        
     return jsonify(asmr_data)
 
 @app.route("/table")

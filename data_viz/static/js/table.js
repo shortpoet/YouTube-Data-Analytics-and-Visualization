@@ -26,6 +26,7 @@ function drawTable(endpoint) {
 				<td class="col_4 row_${i + 1}">${data.date_created}</td><td class="col_5 row_${i + 1}">${Date.now() - new Date(data.date_created)/1000/3600/24}</td>
 				<td class="col_6 row_${i + 1}">${data.subs}</td><td class="col_7 row_${i + 1}">${data.uploads}</td>
 				<td class="col_8 row_${i + 1}">${data.views}</td>
+				`
 			))
 			.on('mouseover', function(d, i) {
 				d3.select(this).style('background-color', 'rgb(0, 14, 142').style('color', 'silver')
