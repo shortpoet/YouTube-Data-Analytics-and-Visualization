@@ -18,29 +18,6 @@ body{
   height: 100%;
   padding: 0;
   margin: 0;
-<<<<<<< HEAD
-  background: #B9DCC7;
-  position: relative;
-  padding-bottom: 80px;
-  /* Padding bottom by footer height */
-}  
-#footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%; /* Set the fixed height of the footer here */
-  height: 10px;
-  padding-top: 20px;
-  padding-bottom: 40px;
-  text-align: center;
-  background-color: #f5f5f5;
-}
-
-#footer p {
-  margin: 0;
-  font-size: 16px;
-}
-
-=======
   background: rgb(119, 182, 241);
   background: linear-gradient(90deg, rgb(141, 183, 202) 0%, rgb(243, 243, 243) 47%, rgb(253, 195, 120) 100%);
   position: relative;
@@ -61,17 +38,12 @@ body{
   margin: 0;
   font-size: 16px;
  }
->>>>>>> 6072f1cd72475095464c227439f4be37516d7ec5
 
 .text-center{
   text-align: center;
   font-family: 'Amatic SC', cursive;
-<<<<<<< HEAD
-  font-size: 25px
-=======
   font-size: 25px;
   border: 10px solid black;
->>>>>>> 6072f1cd72475095464c227439f4be37516d7ec5
 }
 
 h1{
