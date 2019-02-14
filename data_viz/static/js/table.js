@@ -8,7 +8,7 @@ function drawTable(endpoint) {
         console.log(asmr_data)
 				var headers = d3.keys(asmr_data[0])
 				headers = headers.slice(0,6).concat(headers.slice(7,9))
-				headers.splice(6, 0, 'channel_age (days)')
+				headers.splice(5, 0, 'channel_age (days)')
 				console.log(headers)
 		var dataTable = d3.select('#table').append('table').attr('class', 'datatable table table-striped');
 		var header = dataTable.append('thead').selectAll('th').data(headers).enter()
@@ -23,7 +23,7 @@ function drawTable(endpoint) {
 			.html((data, i) => (`
 			  <td class="col_0 row_${i + 1}">${data.channel_id}</td><td class="col_1 row_${i + 1}">${data.channel_name}</td>
 				<td class="col_2 row_${i + 1}">${data.channel_type}</td><td class="col_3 row_${i + 1}">${data.country}</td>
-				<td class="col_4 row_${i + 1}">${data.date_created}</td><td class="col_5 row_${i + 1}">${Date.now() - new Date(data.date_created)/1000/3600/24}</td>
+				<td class="col_4 row_${i + 1}">${data.date_created}</td><td class="col_5 row_${i + 1}">${((Date.now()/1000/3600/24) - (new Date(data.date_created)/1000/3600/24)).toFixed(2)}</td>
 				<td class="col_6 row_${i + 1}">${data.subs}</td><td class="col_7 row_${i + 1}">${data.uploads}</td>
 				<td class="col_8 row_${i + 1}">${data.views}</td>
 				`

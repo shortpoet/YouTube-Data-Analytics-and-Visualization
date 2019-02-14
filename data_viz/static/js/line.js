@@ -37,8 +37,12 @@ function drawLine(endpoint) {
 
 
     asmr_data.forEach(function(data) {
-        data.time_series.average_views.date = parseTime(data.time_series.average_views.date)
-        data.time_series.average_views.average_views = +data.time_series.average_views.average_views
+        data.time_series.average_views.dates.forEach(date => {
+            date = parseTime(date)
+        }) 
+        data.time_series.average_views.values.forEach(datum => {
+            datum = +datum
+        }) 
         // data.time_series.daily_subs.date = parseTime(data.time_series.daily_subs.date)
         // data.time_series.daily_subs.daily_subs = +data.time_series.daily_subs.daily_subs
         // data.time_series.daily_views.date = parseTime(data.time_series.daily_views.date)
@@ -54,12 +58,12 @@ function drawLine(endpoint) {
     // Configure a time scale
     // d3.extent returns the an array containing the min and max values for the property specified
     var xTimeScale = d3.scaleTime()
-        .domain(d3.extent(asmr_data[0], data => data.time_series.average_views.date))
+        .domain(d3.extent(asmr_data[0], data => data.time_series.average_views.dates))
         .range([0, chartWidth]);
 
     // Configure a linear scale with a range between the chartHeight and 0
     var yLinearScale = d3.scaleLinear()
-        .domain([0, d3.max(asmr_data[0], data => data.time_series.average_views.average_views)])
+        .domain([0, d3.max(asmr_data[0], data => data.time_series.average_views.values)])
         .range([chartHeight, 0]);
 
     // Create two new functions passing the scales in as arguments
@@ -69,8 +73,8 @@ function drawLine(endpoint) {
     
     // Configure a line function which will plot the x and y coordinates using our scales
     var drawLine = d3.line()
-        .x(data => xTimeScale(data.time_series.average_views.date))
-        .y(data => yLinearScale(data.time_series.average_views.average_views));
+        .x(data => xTimeScale(data.time_series.average_views.dates))
+        .y(data => yLinearScale(data.time_series.average_views.values));
 
     // Append an SVG path and plot its points using the line function
     chartGroup.append("path")
