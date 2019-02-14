@@ -158,55 +158,6 @@ d3.json('asmr_channels').then(function(asmrData) {
 
   // })
   console.log(asmrData)
-  var headers = d3.keys(asmrData['Angelica'])
-  console.log(headers)
-    // headers = headers.slice(1,4).concat(headers.slice(5,6)).concat(headers.slice(7,8)).concat(headers.slice(9,10)).concat(headers.slice(12,13)).concat(headers.slice(15,16))
-    // var table = d3.select('.data').append('table').classed('table table-striped table-sortable', true)
-    // var thead = table.append('thead')
-    // var headrow = thead.append('tr')
-    // var averageRow = thead.append('tr').attr('class', 'avgerageRow').html(`<td class="row_0"><strong>Average</strong></td class="row_0"><td></td><td class="row_0">${average(asmrData, 'subscribers')}</td><td class="row_0">${average(asmrData, 'age')}</td><td class="row_0">${average(asmrData, 'income')}</td><td class="row_0">${average(asmrData, 'healthcare')}</td><td class="row_0">${average(asmrData, 'uploads')}</td><td class="row_0">${average(asmrData, 'smokes')}</td>`)
-    // var tbody = d3.select('table').append('tbody')
-    // var content = tbody.selectAll('tr').data(asmrData).enter().append('tr').html((data, i) => `<td class="col_0 row_${i + 1}">${data.state}</td><td class="col_1 row_${i + 1}">${data.abbr}</td><td class="col_2 row_${i + 1}">${data.subscribers}</td><td class="col_3 row_${i + 1}">${data.age}</td><td class="col_4 row_${i + 1}">${data.income}</td><td class="col_5 row_${i + 1}">${data.healthcare}</td><td class="col_6 row_${i + 1}">${data.uploads}</td><td class="col_7 row_${i + 1}">${data.smokes}</td>`).on('mouseover', function(d, i) {
-    //                      d3.select(this).style('background-color', 'rgb(0, 14, 142').style('color', 'silver')
-    //                     //  d3.selectAll('td.col_' + i).style('background-color', 'purple')
-    //                     //  console.log(this)
-    //                    })
-    //                    .on('mouseout', function(d, i) {
-    //                      d3.select(this).style('background-color', null).style('color', null)
-    //                     //  d3.selectAll('td.col_' + i).style('background-color', null)
-    //                      d3.select('.data').append('table').classed('table table-striped table-sortable', true)
-    //                   })
-  // d3.selectAll('td.col_2').style("background-color", function(d, i){
-  //   return colorScale(i);
-  // });
-
-  // function colorScale(i){
-  //   var color = d3.scaleLinear()
-  //     .domain([0, content.selectAll("tr").length-1])
-  //     .interpolate(d3.interpolateRgb)
-  //     .range(["orange", "silver"]);
-
-  //   return color(i);
-  // }
-              
-    // var sortAscending = true
-    // headrow.selectAll('th').data(headers).enter().append('th').attr('class', (d, i) => `sortable col_${i + 1}`).attr('value', d => d).text(d => d).on('click',function(d, i) {
-    //   headrow.selectAll('th').attr('class', 'sortable')
-    //   var sort_value = d3.select(this).attr('value')
-    //   if (sortAscending === true) {
-    //     content.sort((a,b) => d3.ascending(a[sort_value], b[sort_value]))
-    //     sortAscending = false
-    //     d3.select(this).attr('class', 'asc')
-    //     //d3.select(this).append('span').attr('class', 'glyphicon glyphicon-triangle-bottom')
-    //     // d3.select(this).classed('asc', false).classed('desc', true)
-    //   } else {
-    //     content.sort((a,b) => d3.descending(a[sort_value], b[sort_value]))
-    //     sortAscending = true
-    //     d3.select(this).attr('class', 'desc')
-    //     // d3.select(this).html(`<th>${d3(select(this).text())}</th><span class="glyphicon glyphicon-triangle-bottom"></span>`)
-    //     // d3.select(this).classed('asc', true).classed('desc', false)
-    //   }
-    // })
     
     // xLinearScale function above csv import
   var xLinearScale = xScale(asmrData, chosenXAxis);

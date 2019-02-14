@@ -26,10 +26,15 @@ def asmr_channels():
     # for i in mongo.db.social_blade_asmr_data.find():
     #     asmr_data = json.dumps(i, indent=4, default=json_util.default)
 
-    asmr_data = mongo.db.social_blade_asmr_data.find_one({}, {'_id': False})
-
+    db_response = mongo.db.social_blade_asmr_data.find_one({}, {'_id': False})
+    asmr_data = []
+    for channel, data in db_response.items():
+        asmr_data.append(data)
     return jsonify(asmr_data)
 
+@app.route("/table")
+def table():
+    return render_template("table.html")
 
 # @app.route("/status_spirit.html#recient")
 # def redir1():
