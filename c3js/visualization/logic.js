@@ -36,10 +36,10 @@ var chart = c3.generate({
       x: 'x',
       columns: [
           ['x', 'Social Media'],
-          ['facebook', 28],
-          ['instagram', 33],
-          ['twitch', 7],
-          ['twitter', 32]
+          ['facebook', 29],
+          ['instagram', 39],
+          ['twitch', 8],
+          ['twitter', 37]
       ],
       type: 'bar'
   },
