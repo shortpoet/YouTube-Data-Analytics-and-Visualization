@@ -28,7 +28,7 @@ def asmr_channels():
     # for i in mongo.db.social_blade_asmr_data.find():
     #     asmr_data = json.dumps(i, indent=4, default=json_util.default)
 
-    db_response = mongo.db.social_blade_asmr_data.find_one({}, {'_id': False})
+    db_response = mongo.db.social_blade_asmr_data.find_one({}, {'_id': False, 'DanaASMR': False, 'SassEsnacks': False})
     asmr_data = []
     for channel, data in db_response.items():
         asmr_data.append(data)

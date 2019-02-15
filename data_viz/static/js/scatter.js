@@ -25,7 +25,7 @@ var chartGroup = scatterSvg.append("g")
   .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
 // Initial Params
-var chosenXAxis = "subscribers";
+var chosenXAxis = "subs";
 var chosenYAxis = "uploads";
 
 // function used for updating x-scale var upon click on axis label
@@ -99,8 +99,8 @@ function yScale(asmrData, chosenYAxis) {
   // function used for updating circles group with new tooltip
   function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
   
-    if (chosenXAxis === "subscribers") {
-      var xlabel = "Subscribers";
+    if (chosenXAxis === "subs") {
+      var xlabel = "subs";
     }
     else if (chosenXAxis === "views") {
       var xlabel = "Views";
@@ -119,22 +119,22 @@ function yScale(asmrData, chosenYAxis) {
       var ylabel = "Comment Count";
     }
   
-    // var toolTip = d3.tip()
-    //   .attr("class", "d3-tip")
-    //   .offset([80, -60])
-    //   .html(function(d) {
-    //     return (`${d.state}<br>${xlabel}: ${d[chosenXAxis]}<br>${ylabel}: ${d[chosenYAxis]}`);
-    //   });
+    var toolTip = d3.tip()
+      .attr("class", "d3-tip")
+      .offset([80, -60])
+      .html(function(d) {
+        return (`${d.channel_name}<br>${xlabel}: ${d[chosenXAxis]}<br>${ylabel}: ${d[chosenYAxis]}`);
+      });
   
-    // circlesGroup.call(toolTip);
+    circlesGroup.call(toolTip);
   
-    // circlesGroup.on("mouseover", function(data) {
-    //   toolTip.show(data, this);
-    // })
-    //   // onmouseout event
-    //   .on("mouseout", function(data, index) {
-    //     toolTip.hide(data);
-    // });
+    circlesGroup.on("mouseover", function(data) {
+      toolTip.show(data, this);
+    })
+      // onmouseout event
+      .on("mouseout", function(data, index) {
+        toolTip.hide(data);
+    });
   
     return circlesGroup;
   }
@@ -144,19 +144,12 @@ function average(dataset, column) {
 }
 
 d3.json('asmr_channels').then(function(asmrData) {
-  Object.entries(asmrData).forEach((k,v) => {
-    var channel_name = k['channel_name']
-  })
   
-  // asmrData.forEach(data => {
-  //     var uploads = +data.uploads
-  //     var subscribers = +data.subs
-  //     var views = +data.views
-  //     var channel_name = data.channel_name
-
-  //     var diff_hours = now - new Date('2015-08-14T00:00:00')/1000/3600/24
-
-  // })
+  asmrData.forEach(data => {
+      data.uploads = +data.uploads
+      data.subs = +data.subs
+      data.views = +data.views
+  })
   console.log(asmrData)
     
     // xLinearScale function above csv import
@@ -191,7 +184,7 @@ d3.json('asmr_channels').then(function(asmrData) {
     .classed('channelCircle', true)
 
   var circleLabelsGroup = chartGroup.append('g')
-    .classed('stateText', true)
+    .classed('circleLabelGroup', true)
 
   var circleLabels = circleLabelsGroup.selectAll('text')
     .data(asmrData)
@@ -214,12 +207,12 @@ d3.json('asmr_channels').then(function(asmrData) {
 
   
 
-  var subscribersLabel = xLabelsGroup.append("text")
+  var subsLabel = xLabelsGroup.append("text")
     .attr("x", 0)
     .attr("y", 20)
-    .attr("value", "subscribers") // value to grab for event listener
+    .attr("value", "subs") // value to grab for event listener
     .classed("active", true)
-    .text("Subscribers");
+    .text("subs");
 
   var viewsLabel = xLabelsGroup.append("text")
     .attr("x", 0)
@@ -288,8 +281,8 @@ d3.json('asmr_channels').then(function(asmrData) {
         circlesGroup = updateToolTip(chosenXAxis, chosenYAxis, circlesGroup);
 
         // changes classes to change bold text
-        if (chosenXAxis === "subscribers") {
-          subscribersLabel
+        if (chosenXAxis === "subs") {
+          subsLabel
             .classed("active", true)
             .classed("inactive", false);
           viewsLabel
@@ -297,7 +290,7 @@ d3.json('asmr_channels').then(function(asmrData) {
             .classed("inactive", true);
         }
         else {
-          subscribersLabel
+          subsLabel
             .classed("active", false)
             .classed("inactive", true);
           viewsLabel
