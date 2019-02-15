@@ -1,9 +1,6 @@
 
 endpoint = 'asmr_channels'
 
-function getAge(data) {
-	return ((Date.now()/1000/3600/24) - (new Date(data.date_created)/1000/3600/24)).toFixed()
-}
 
 function drawTable(endpoint) {
 	console.log(endpoint)
@@ -11,10 +8,8 @@ function drawTable(endpoint) {
 		console.log(endpoint)
         console.log(asmr_data)
 				var headers = d3.keys(asmr_data[0])
-				headers = headers.slice(0,6).concat(headers.slice(7,9))
-				headers.splice(5, 0, 'channel_age (days)')
-				var averages = ['upload_frequency', 'avg_views/video', 'avg_views/subscriber']
-				headers = headers.concat(averages)
+				console.log(headers)
+				headers = headers.slice(4,8).concat(headers.slice(2,3)).concat(headers.slice(8,9)).concat(headers.slice(12,14)).concat(headers.slice(11,12)).concat(headers.slice(10,11)).concat(headers.slice(0,2)).concat(headers.slice(3,4))
 				
 				console.log(headers)
 		var dataTable = d3.select('#table').append('table').attr('class', 'datatable table table-striped');
@@ -28,12 +23,12 @@ function drawTable(endpoint) {
 		var content = tbody.selectAll('tr').data(asmr_data).enter()
 			.append('tr')
 			.html((data, i) => (`
-			  <td class="col_0 row_${i + 1}">${data.channel_id}</td><td class="col_1 row_${i + 1}">${data.channel_name}</td>
-				<td class="col_2 row_${i + 1}">${data.channel_type}</td><td class="col_3 row_${i + 1}">${data.country}</td>
-				<td class="col_4 row_${i + 1}">${data.date_created}</td><td class="col_5 row_${i + 1}">${getAge(data)}</td>
-				<td class="col_6 row_${i + 1}">${data.subs}</td><td class="col_7 row_${i + 1}">${data.uploads}</td>
-				<td class="col_8 row_${i + 1}">${data.views}</td><td class="col_9 row_${i + 1}">${(getAge(data)/data.uploads).toFixed(2)}</td>
-				<td class="col_10 row_${i + 1}">${(data.views/data.uploads).toFixed(2)}</td><td class="col_8 row_${i + 1}">${(data.views/data.subs).toFixed(2)}</td>
+			  <td class="col_0 row_${i + 1}">${data.channel_name}</td><td class="col_1 row_${i + 1}">${data.channel_type}</td>
+				<td class="col_2 row_${i + 1}">${data.country}</td><td class="col_3 row_${i + 1}">${data.date_created}</td>
+				<td class="col_4 row_${i + 1}">${data.channel_age}</td><td class="col_5 row_${i + 1}">${data.subs}</td>
+				<td class="col_6 row_${i + 1}">${data.views}</td><td class="col_7 row_${i + 1}">${data.uploads}</td>
+				<td class="col_8 row_${i + 1}">${data.upload_frequency}</td><td class="col_9 row_${i + 1}">${data.avg_views_subscriber}</td>
+				<td class="col_10 row_${i + 1}">${data.avg_views_video}</td><td class="col_8 row_${i + 1}">${data.avg_views_subscriber}</td>
 				`
 			))
 			.on('mouseover', function(d, i) {

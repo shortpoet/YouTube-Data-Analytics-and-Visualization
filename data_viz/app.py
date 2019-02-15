@@ -33,12 +33,19 @@ def asmr_channels():
     for channel, data in db_response.items():
         asmr_data.append(data)
     for datum in asmr_data:
+        datum['uploads'] = int(datum['uploads'])
+        datum['views'] = int(datum['views'])
+        datum['subs'] = int(datum['subs'])
         datum['date_created'] = re.sub(r'th,', '', datum['date_created'])
         datum['date_created'] = re.sub(r'st,', '', datum['date_created'])
         datum['date_created'] = re.sub(r'nd,', '', datum['date_created'])
         datum['date_created'] = re.sub(r'rd,', '', datum['date_created']).strip()
-        datum['date_created'] = dt.strptime(datum['date_created'], '%b %d %Y').isoformat()
-        
+        datum['date_created'] = dt.strptime(datum['date_created'], '%b %d %Y')
+        datum['channel_age'] = round((dt.now() - datum['date_created']).total_seconds()/3600/24)
+        datum['upload_frequency'] = round(datum['channel_age']/datum['uploads'])
+        datum['avg_views_video'] = round(datum['views']/datum['uploads'])
+        datum['avg_views_subscriber'] = round(datum['views']/datum['subs'])
+        datum['date_created'] = datum['date_created'].isoformat()        
     return jsonify(asmr_data)
 
 @app.route("/table")
