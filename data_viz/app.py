@@ -45,6 +45,16 @@ def asmr_channels():
 def table():
     return render_template("table.html")
 
+@app.route("/linedata")
+def linedata():
+    # return jsonify({'date':['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
+    #                 'miles':[10,7,15,17,12,14,15]})
+    dates = ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug']
+    miles = [10,7,15,17,12,14,15]
+    data = []
+    for i, _ in enumerate(dates):
+        data.append({'date': dates[i], 'miles': miles[i]})
+    return jsonify(data)
 @app.route("/line")
 def line():
     return render_template("line.html")

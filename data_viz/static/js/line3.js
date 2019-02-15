@@ -37,12 +37,13 @@ function drawLine(endpoint) {
 
 
     asmr_data.forEach(function(data) {
-        data.time_series.average_views.dates.forEach(date => {
-            date = parseTime(date)
+        data.time_series.average_views.forEach(day => {
+            day['dates'] = parseTime(day['dates'])
         }) 
-        data.time_series.average_views.values.forEach(datum => {
-            datum = +datum
+        data.time_series.average_views.forEach(day => {
+            day['average_views'] = +day['average_views']
         }) 
+        // data.time_series.average_views.average_views = +data.time_series.average_views.average_views
         // data.time_series.daily_subs.date = parseTime(data.time_series.daily_subs.date)
         // data.time_series.daily_subs.daily_subs = +data.time_series.daily_subs.daily_subs
         // data.time_series.daily_views.date = parseTime(data.time_series.daily_views.date)
@@ -58,29 +59,26 @@ function drawLine(endpoint) {
     // Configure a time scale
     // d3.extent returns the an array containing the min and max values for the property specified
     var xTimeScale = d3.scaleTime()
-        .domain(d3.extent(asmr_data[0], data => data.time_series.average_views.dates))
-        .range([0, chartWidth]);
-    console.log(xTimeScale)
+        .range([0, chartWidth])
+        .domain(d3.extent(asmr_data[0].time_series.average_views, data => data.dates))
     // Configure a linear scale with a range between the chartHeight and 0
     var yLinearScale = d3.scaleLinear()
-        .domain([0, d3.max(asmr_data[0], data => data.time_series.average_views.values)])
-        .range([chartHeight, 0]);
-    console.log(yLinearScale)
+        .range([chartHeight, 0])
+        .domain([0, d3.max(asmr_data[0].time_series.average_views, data => data.average_views)])
 
     // Create two new functions passing the scales in as arguments
     // These will be used to create the chart's axes
-    var bottomAxis = d3.axisBottom(xTimeScale);
-    var leftAxis = d3.axisLeft(yLinearScale);
+    var bottomAxis = d3.axisBottom(xTimeScale)
+    var leftAxis = d3.axisLeft(yLinearScale)
     
     // Configure a line function which will plot the x and y coordinates using our scales
     var drawLine = d3.line()
-        .x(data => xTimeScale(data.time_series.average_views.dates))
-        .y(data => yLinearScale(data.time_series.average_views.values));
-    console.log(drawLine)
+        .x(data => xTimeScale(data.dates))
+        .y(data => yLinearScale(data.average_views))
     // Append an SVG path and plot its points using the line function
     chartGroup.append("path")
         // The drawLine function returns the instructions for creating the line for asmr_data
-        .attr("d", drawLine(asmr_data[0]))
+        .attr("d", drawLine(asmr_data[0].time_series.average_views))
         .classed("line", true);
 
     // Append an SVG group element to the chartGroup, create the left axis inside of it
