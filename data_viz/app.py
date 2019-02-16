@@ -46,15 +46,15 @@ def asmr_channels():
         datum['avg_views_video'] = round(datum['views']/datum['uploads'])
         datum['avg_views_subscriber'] = round(datum['views']/datum['subs'])
         datum['date_created'] = datum['date_created'].isoformat()
-        datum['total_duration'] = sum([video['duration'] for video in datum['videos']])
-        datum['total_comments'] = sum([video['comments'] for video in datum['videos']])
-        datum['total_likes'] = sum([video['likes'] for video in datum['videos']])
-        datum['total_dislikes'] = sum([video['dislikes'] for video in datum['videos']])
-        datum['average_duration'] = datum['total_duration'] / datum['uploads']
-        datum['average_comments'] = datum['total_comments'] / datum['uploads']
-        datum['average_likes'] = datum['total_likes'] / datum['uploads']
-        datum['average_dislikes'] = datum['total_dislikes'] / datum['uploads']
-        datum['like_ratio'] = datum['total_likes'] / datum['total_dislikes']
+        # datum['total_duration'] = sum([video['duration'] for video in datum['videos']])
+        # datum['total_comments'] = sum([video['comments'] for video in datum['videos']])
+        # datum['total_likes'] = sum([video['likes'] for video in datum['videos']])
+        # datum['total_dislikes'] = sum([video['dislikes'] for video in datum['videos']])
+        # datum['average_duration'] = datum['total_duration'] / datum['uploads']
+        # datum['average_comments'] = datum['total_comments'] / datum['uploads']
+        # datum['average_likes'] = datum['total_likes'] / datum['uploads']
+        # datum['average_dislikes'] = datum['total_dislikes'] / datum['uploads']
+        # datum['like_ratio'] = datum['total_likes'] / datum['total_dislikes']
         # datum =  {
         #     'channel_name': datum['channel_name'], 'channel_type': datum['channel_type'],'uploads': datum['uploads'], 'subs': datum['subs'], 
         #     'views': datum['views'], 'date_created': datum['date_created'], 'channel_age': datum['channel_age'], 'upload_frequency': datum['upload_frequency'],
