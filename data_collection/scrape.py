@@ -49,9 +49,12 @@ def dataframer(blob, val_type):
     return dict_list
 
 def topicCipher(array):
-    df = pd.DataFrame({'topic_id': array})
-    merge = pd.merge(df, topic_df, on='topic_id', how='left')
-    return merge['topic_name'].values.tolist()
+    if array == '':
+        return ''
+    else:
+        df = pd.DataFrame({'topic_id': array})
+        merge = pd.merge(df, topic_df, on='topic_id', how='left')
+        return merge['topic_name'].values.tolist()
 
 conn = 'mongodb://localhost:27017'
 client = pymongo.MongoClient(conn)
@@ -68,6 +71,7 @@ updated_asmr_df = updated_asmr_df.fillna(0)
 channel_names = updated_asmr_df['channel'].values.tolist()
 sb_urls = updated_asmr_df['sb_url'].values.tolist()
 birthyears = updated_asmr_df['birthyear'].values.tolist()
+countries = updated_asmr_df['country'].values.tolist()
 genders = updated_asmr_df['gender'].values.tolist()
 twitters = updated_asmr_df['twitter'].values.tolist()
 instagrams = updated_asmr_df['instagram'].values.tolist()
@@ -100,6 +104,7 @@ if mongoDb.social_blade_asmr_response.find_one():
         channel_type = blade_soup.find('span', id="youtube-stats-header-channeltype").text
         date_created = blade_soup.find('span', text='User Created').findNext('span').text
         
+        country = countries[index]
         birthyear = birthyears[index]
         gender = genders[index]
         twitter = twitters[index]
@@ -141,10 +146,10 @@ else:
         uploads = blade_soup.find('span', id="youtube-stats-header-uploads").text
         subs = blade_soup.find('span', id="youtube-stats-header-subs").text
         views = blade_soup.find('span', id="youtube-stats-header-views").text
-        country = blade_soup.find('span', id="youtube-stats-header-country").text
         channel_type = blade_soup.find('span', id="youtube-stats-header-channeltype").text
         date_created = blade_soup.find('span', text='User Created').findNext('span').text
         
+        country = countries[index]
         birthyear = birthyears[index]
         gender = genders[index]
         twitter = twitters[index]
@@ -342,28 +347,24 @@ else:
         region['categories'] = region_category_list
         all_region_category_list.append(region_category_list)
 
-if mongoDb.youtube_scrape_response.find_one():
-    for index, url in enumerate(urls):
-        channel = channel_names[index]
-        collection = mongoDb.youtube_scrape_response
-        html = loads(dumps(collection.find({channel : {'$exists':True}})))[0][channel]
-        
+for index, url in enumerate(urls):
+    channel = channel_names[index]
+    cacheFilePath = f"./../../../youtube_project_caches/{channel}_youtube_scrape_html.txt"
+    if os.path.isfile(cacheFilePath):
+        with open(cacheFilePath, encoding='utf-8') as cacheFile:
+            html = cacheFile.read() 
         video_soup = bs(html, 'html.parser')
         video_soup.find_all('a', id='video-title')
-
         anchors = video_soup.find_all('a', id='video-title')
         videos = []
         for anchor in anchors:
             _id = anchor['href'][9:]
             video_dict = {'video_id': _id}
             videos.append(video_dict)
-        collection = mongoDb.social_blade_asmr_data
+        collection = mongoDb.youtube_channel_video_data
         target = channel + '.videos'
-        collection.update_one({}, {'$set': {target: videos} }, upsert=True)
-
-else:
-    youtube_asmr_response_dict = {}
-    for index, url in enumerate(urls):
+        collection.update_one({}, {'$set': {channel: videos} }, upsert=True)
+    else:    
         TIMEOUT_IN_SECONDS = 10
 
         wait = WebDriverWait(driver, TIMEOUT_IN_SECONDS)
@@ -390,12 +391,8 @@ else:
         elements = driver.find_elements_by_css_selector("#items #video-title")
 
         html = driver.page_source
-
-        channel = channel_names[index]
-        youtube_asmr_response_dict.setdefault(channel, {})
-        youtube_asmr_response_dict[channel] = html
-        collection = mongoDb.youtube_scrape_response
-        collection.update_one({}, {'$set': youtube_asmr_response_dict}, upsert=True)
+        with open(cacheFilePath, "w", encoding='utf-8') as cacheFile:
+            cacheFile.write(html)
 
         video_soup = bs(html, 'html.parser')
         video_soup.find_all('a', id='video-title')
@@ -406,9 +403,9 @@ else:
             _id = anchor['href'][9:]
             video_dict = {'video_id': _id}
             videos.append(video_dict)
-        collection = mongoDb.social_blade_asmr_data
+        collection = mongoDb.youtube_channel_video_data
         target = channel + '.videos'
-        collection.update_one({}, {'$set': {target: videos} }, upsert=True)
+        collection.update_one({}, {'$set': {channel: videos} }, upsert=True)
 
 if mongoDb.social_blade_asmr_data.find_one():
     for index, url in enumerate(urls):
@@ -428,23 +425,53 @@ if mongoDb.social_blade_asmr_data.find_one():
 
 
             ).execute()
-            published_at = video_search_response['items'][0]['snippet']['publishedAt']
-            video_id = video_search_response['items'][0]['id']
-            title = video_search_response['items'][0]['snippet']['title']
-            duration = video_search_response['items'][0]['contentDetails']['duration']
-            duration = isodate.parse_duration(duration).total_seconds()
-            category_id = video_search_response['items'][0]['snippet']['categoryId']
-            comment_count = video_search_response['items'][0]['statistics']['commentCount']
-            dislike_count = video_search_response['items'][0]['statistics']['dislikeCount']
-            like_count = video_search_response['items'][0]['statistics']['likeCount']
-            topic_ids = video_search_response['items'][0]['topicDetails']['topicIds']
-            relevant_topic_ids = video_search_response['items'][0]['topicDetails']['relevantTopicIds']
+            try:
+                published_at = video_search_response['items'][0]['snippet']['publishedAt']
+            except:
+                published_at = 0
+            try:
+                video_id = video_search_response['items'][0]['id']
+            except:
+                video_id = ""
+            try:
+                title = video_search_response['items'][0]['snippet']['title']
+            except:
+                title = ""
+            try:
+                duration = video_search_response['items'][0]['contentDetails']['duration']
+                duration = isodate.parse_duration(duration).total_seconds()
+            except:
+                duration = 0
+            try:
+                category_id = video_search_response['items'][0]['snippet']['categoryId']
+            except:
+                category_id = ""
+            try:
+                comment_count = video_search_response['items'][0]['statistics']['commentCount']
+            except:
+                comment_count = 0
+            try:
+                dislike_count = video_search_response['items'][0]['statistics']['dislikeCount']
+            except:
+                dislike_count = 0
+            try:
+                like_count = video_search_response['items'][0]['statistics']['likeCount']
+            except:
+                like_count = 0
+            try:
+                topic_ids = video_search_response['items'][0]['topicDetails']['topicIds']
+            except:
+                topic_ids = ""
+            try:
+                relevant_topic_ids = video_search_response['items'][0]['topicDetails']['relevantTopicIds']
+            except:
+                relevant_topic_ids = ""
             video_dict = {
                 'video_id': video_id, 'title': title, 'published_at': published_at, 'duration': duration,
-                'comment_count': int(comment_count), 'like_count': int(like_count), 'dislike_count': int(dislike_count), 
-                'category_id': int(category_id), 'topic_ids': topicCipher(topic_ids), 
+                'comment_count': comment_count, 'like_count': like_count, 'dislike_count': dislike_count, 
+                'category_id': category_id, 'topic_ids': topicCipher(topic_ids), 
                 'relevant_topic_ids': topicCipher(relevant_topic_ids)
-            }
+            }            
             new_video_dict_list.append(video_dict)
         collection = mongoDb.social_blade_asmr_data
         target = channel + '.videos'
