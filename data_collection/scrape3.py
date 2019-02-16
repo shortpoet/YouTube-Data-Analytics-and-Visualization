@@ -406,135 +406,135 @@ for index, url in enumerate(urls):
         target = channel + '.videos'
         collection.update_one({}, {'$set': {channel: videos} }, upsert=True)
 
-if mongoDb.social_blade_asmr_data.find_one():
-    for index, url in enumerate(urls):
+# if mongoDb.social_blade_asmr_data.find_one():
+#     for index, url in enumerate(urls):
         
-        channel = channel_names[index]
-        collection = mongoDb.youtube_channel_video_data
+#         channel = channel_names[index]
+#         collection = mongoDb.youtube_channel_video_data
         
-        old_video_dict_list = loads(dumps(collection.find({channel : {'$exists':True}})))[0][channel]
-        new_video_dict_list = []
-        collection = mongoDb.youtube_video_search_response
-        if mongoDb.youtube_video_search_response.find_one():
-            for video in old_video_dict_list:
-                video_search_response = loads(dumps(collection.find({video['video_id']: {'$exists':True}})))
+#         old_video_dict_list = loads(dumps(collection.find({channel : {'$exists':True}})))[0][channel]
+#         new_video_dict_list = []
+#         collection = mongoDb.youtube_video_search_response
+#         if mongoDb.youtube_video_search_response.find_one():
+#             for video in old_video_dict_list:
+#                 video_search_response = loads(dumps(collection.find({video['video_id']: {'$exists':True}})))
 
-                try:
-                    published_at = video_search_response['items'][0]['snippet']['publishedAt']
-                except:
-                    published_at = 0
-                try:
-                    video_id = video_search_response['items'][0]['id']
-                except:
-                    video_id = ""
-                try:
-                    title = video_search_response['items'][0]['snippet']['title']
-                except:
-                    title = ""
-                try:
-                    duration = video_search_response['items'][0]['contentDetails']['duration']
-                    duration = isodate.parse_duration(duration).total_seconds()
-                except:
-                    duration = 0
-                try:
-                    category_id = video_search_response['items'][0]['snippet']['categoryId']
-                except:
-                    category_id = ""
-                try:
-                    comment_count = video_search_response['items'][0]['statistics']['commentCount']
-                except:
-                    comment_count = 0
-                try:
-                    dislike_count = video_search_response['items'][0]['statistics']['dislikeCount']
-                except:
-                    dislike_count = 0
-                try:
-                    like_count = video_search_response['items'][0]['statistics']['likeCount']
-                except:
-                    like_count = 0
-                try:
-                    topic_ids = video_search_response['items'][0]['topicDetails']['topicIds']
-                except:
-                    topic_ids = ""
-                try:
-                    relevant_topic_ids = video_search_response['items'][0]['topicDetails']['relevantTopicIds']
-                except:
-                    relevant_topic_ids = ""
-                video_dict = {
-                    'video_id': video_id, 'title': title, 'published_at': published_at, 'duration': duration,
-                    'comment_count': int(comment_count), 'like_count': int(like_count), 'dislike_count': int(dislike_count), 
-                    'category_id': category_id, 'topic_ids': topicCipher(topic_ids), 
-                    'relevant_topic_ids': topicCipher(relevant_topic_ids)
-                }
-                new_video_dict_list.append(video_dict)
-            collection = mongoDb.youtube_channel_video_data
-            collection.update_one({}, {'$set': {channel: new_video_dict_list} }, upsert=True)
-        else:
-            video_search_response_dict = {}
-            for video in old_video_dict_list:
-                video_search_response = youtube.videos().list(
-                    id=video['video_id'],
-                    pageToken=None,
-                    part="snippet,contentDetails,statistics,topicDetails,id",
-                    maxResults=50
+#                 try:
+#                     published_at = video_search_response['items'][0]['snippet']['publishedAt']
+#                 except:
+#                     published_at = 0
+#                 try:
+#                     video_id = video_search_response['items'][0]['id']
+#                 except:
+#                     video_id = ""
+#                 try:
+#                     title = video_search_response['items'][0]['snippet']['title']
+#                 except:
+#                     title = ""
+#                 try:
+#                     duration = video_search_response['items'][0]['contentDetails']['duration']
+#                     duration = isodate.parse_duration(duration).total_seconds()
+#                 except:
+#                     duration = 0
+#                 try:
+#                     category_id = video_search_response['items'][0]['snippet']['categoryId']
+#                 except:
+#                     category_id = ""
+#                 try:
+#                     comment_count = video_search_response['items'][0]['statistics']['commentCount']
+#                 except:
+#                     comment_count = 0
+#                 try:
+#                     dislike_count = video_search_response['items'][0]['statistics']['dislikeCount']
+#                 except:
+#                     dislike_count = 0
+#                 try:
+#                     like_count = video_search_response['items'][0]['statistics']['likeCount']
+#                 except:
+#                     like_count = 0
+#                 try:
+#                     topic_ids = video_search_response['items'][0]['topicDetails']['topicIds']
+#                 except:
+#                     topic_ids = ""
+#                 try:
+#                     relevant_topic_ids = video_search_response['items'][0]['topicDetails']['relevantTopicIds']
+#                 except:
+#                     relevant_topic_ids = ""
+#                 video_dict = {
+#                     'video_id': video_id, 'title': title, 'published_at': published_at, 'duration': duration,
+#                     'comment_count': int(comment_count), 'like_count': int(like_count), 'dislike_count': int(dislike_count), 
+#                     'category_id': category_id, 'topic_ids': topicCipher(topic_ids), 
+#                     'relevant_topic_ids': topicCipher(relevant_topic_ids)
+#                 }
+#                 new_video_dict_list.append(video_dict)
+#             collection = mongoDb.youtube_channel_video_data
+#             collection.update_one({}, {'$set': {channel: new_video_dict_list} }, upsert=True)
+#         else:
+#             video_search_response_dict = {}
+#             for video in old_video_dict_list:
+#                 video_search_response = youtube.videos().list(
+#                     id=video['video_id'],
+#                     pageToken=None,
+#                     part="snippet,contentDetails,statistics,topicDetails,id",
+#                     maxResults=50
 
 
-                ).execute()
+#                 ).execute()
                 
-                video_search_response_dict[video['video_id']] = {'video_search_response': video_search_response}
-                collection = mongoDb.youtube_video_search_response
-                collection.update_one({}, {'$set': video_search_response_dict}, upsert=True)
+#                 video_search_response_dict[video['video_id']] = {'video_search_response': video_search_response}
+#                 collection = mongoDb.youtube_video_search_response
+#                 collection.update_one({}, {'$set': video_search_response_dict}, upsert=True)
                 
-                try:
-                    published_at = video_search_response['items'][0]['snippet']['publishedAt']
-                except:
-                    published_at = 0
-                try:
-                    video_id = video_search_response['items'][0]['id']
-                except:
-                    video_id = ""
-                try:
-                    title = video_search_response['items'][0]['snippet']['title']
-                except:
-                    title = ""
-                try:
-                    duration = video_search_response['items'][0]['contentDetails']['duration']
-                    duration = isodate.parse_duration(duration).total_seconds()
-                except:
-                    duration = 0
-                try:
-                    category_id = video_search_response['items'][0]['snippet']['categoryId']
-                except:
-                    category_id = ""
-                try:
-                    comment_count = video_search_response['items'][0]['statistics']['commentCount']
-                except:
-                    comment_count = ""
-                try:
-                    dislike_count = video_search_response['items'][0]['statistics']['dislikeCount']
-                except:
-                    dislike_count = ""
-                try:
-                    like_count = video_search_response['items'][0]['statistics']['likeCount']
-                except:
-                    like_count = ""
-                try:
-                    topic_ids = video_search_response['items'][0]['topicDetails']['topicIds']
-                except:
-                    topic_ids = ""
-                try:
-                    relevant_topic_ids = video_search_response['items'][0]['topicDetails']['relevantTopicIds']
-                except:
-                    relevant_topic_ids = ""
-                video_dict = {
-                    'video_id': video_id, 'title': title, 'published_at': published_at, 'duration': duration,
-                    'comment_count': int(comment_count), 'like_count': int(like_count), 'dislike_count': int(dislike_count), 
-                    'category_id': int(category_id), 'topic_ids': topicCipher(topic_ids), 
-                    'relevant_topic_ids': topicCipher(relevant_topic_ids)
-                }
-                new_video_dict_list.append(video_dict)
-            collection = mongoDb.youtube_channel_video_data
-            collection.update_one({}, {'$set': {channel: new_video_dict_list} }, upsert=True)
+#                 try:
+#                     published_at = video_search_response['items'][0]['snippet']['publishedAt']
+#                 except:
+#                     published_at = 0
+#                 try:
+#                     video_id = video_search_response['items'][0]['id']
+#                 except:
+#                     video_id = ""
+#                 try:
+#                     title = video_search_response['items'][0]['snippet']['title']
+#                 except:
+#                     title = ""
+#                 try:
+#                     duration = video_search_response['items'][0]['contentDetails']['duration']
+#                     duration = isodate.parse_duration(duration).total_seconds()
+#                 except:
+#                     duration = 0
+#                 try:
+#                     category_id = video_search_response['items'][0]['snippet']['categoryId']
+#                 except:
+#                     category_id = ""
+#                 try:
+#                     comment_count = video_search_response['items'][0]['statistics']['commentCount']
+#                 except:
+#                     comment_count = ""
+#                 try:
+#                     dislike_count = video_search_response['items'][0]['statistics']['dislikeCount']
+#                 except:
+#                     dislike_count = ""
+#                 try:
+#                     like_count = video_search_response['items'][0]['statistics']['likeCount']
+#                 except:
+#                     like_count = ""
+#                 try:
+#                     topic_ids = video_search_response['items'][0]['topicDetails']['topicIds']
+#                 except:
+#                     topic_ids = ""
+#                 try:
+#                     relevant_topic_ids = video_search_response['items'][0]['topicDetails']['relevantTopicIds']
+#                 except:
+#                     relevant_topic_ids = ""
+#                 video_dict = {
+#                     'video_id': video_id, 'title': title, 'published_at': published_at, 'duration': duration,
+#                     'comment_count': int(comment_count), 'like_count': int(like_count), 'dislike_count': int(dislike_count), 
+#                     'category_id': int(category_id), 'topic_ids': topicCipher(topic_ids), 
+#                     'relevant_topic_ids': topicCipher(relevant_topic_ids)
+#                 }
+#                 new_video_dict_list.append(video_dict)
+#             collection = mongoDb.youtube_channel_video_data
+#             collection.update_one({}, {'$set': {channel: new_video_dict_list} }, upsert=True)
 
 browser.quit()
 driver.quit()
