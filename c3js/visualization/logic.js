@@ -13,8 +13,8 @@ var chart = c3.generate({
   data: {
       //url: '/resources/ASMR_data.csv',
       columns: [
-          ['Male', 15],
-          ['Female', 35]
+          ['Male', 17],
+          ['Female', 41]
       ],
       type : 'donut',
       onclick: function (d, i) { console.log("onclick", d, i); },
