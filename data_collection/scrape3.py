@@ -346,7 +346,7 @@ else:
         all_region_category_list.append(region_category_list)
 
 
-for index, url in enumerate(urls[0:1]):
+for index, url in enumerate(urls):
     channel = channel_names[index]
     cacheFilePath = f"./../../../youtube_project_caches/{channel}_youtube_scrape_html.txt"
     if os.path.isfile(cacheFilePath):
@@ -362,7 +362,7 @@ for index, url in enumerate(urls[0:1]):
             videos.append(video_dict)
         collection = mongoDb.youtube_channel_video_data
         target = channel + '.videos'
-        collection.update_one({}, {'$set': {target: videos} }, upsert=True)
+        collection.update_one({}, {'$set': {channel: videos} }, upsert=True)
     else:    
         TIMEOUT_IN_SECONDS = 10
 
@@ -404,15 +404,15 @@ for index, url in enumerate(urls[0:1]):
             videos.append(video_dict)
         collection = mongoDb.youtube_channel_video_data
         target = channel + '.videos'
-        collection.update_one({}, {'$set': {target: videos} }, upsert=True)
+        collection.update_one({}, {'$set': {channel: videos} }, upsert=True)
 
 if mongoDb.social_blade_asmr_data.find_one():
-    for index, url in enumerate(urls[0:1]):
+    for index, url in enumerate(urls):
         
         channel = channel_names[index]
-        collection = mongoDb.social_blade_asmr_data
+        collection = mongoDb.youtube_channel_video_data
         
-        old_video_dict_list = loads(dumps(collection.find({channel : {'$exists':True}})))[0][channel]['videos']
+        old_video_dict_list = loads(dumps(collection.find({channel : {'$exists':True}})))[0][channel]
         new_video_dict_list = []
         collection = mongoDb.youtube_video_search_response
         if mongoDb.youtube_video_search_response.find_one():
@@ -468,8 +468,7 @@ if mongoDb.social_blade_asmr_data.find_one():
                 }
                 new_video_dict_list.append(video_dict)
             collection = mongoDb.youtube_channel_video_data
-            target = channel + '.videos'
-            collection.update_one({}, {'$set': {target: new_video_dict_list} }, upsert=True)
+            collection.update_one({}, {'$set': {channel: new_video_dict_list} }, upsert=True)
         else:
             video_search_response_dict = {}
             for video in old_video_dict_list:
@@ -535,8 +534,7 @@ if mongoDb.social_blade_asmr_data.find_one():
                 }
                 new_video_dict_list.append(video_dict)
             collection = mongoDb.youtube_channel_video_data
-            target = channel + '.videos'
-            collection.update_one({}, {'$set': {target: new_video_dict_list} }, upsert=True)
+            collection.update_one({}, {'$set': {channel: new_video_dict_list} }, upsert=True)
 
 browser.quit()
 driver.quit()

@@ -58,25 +58,22 @@ function drawLine(endpoint) {
     // Configure a time scale
     // d3.extent returns the an array containing the min and max values for the property specified
     var xTimeScale = d3.scaleTime()
+        .range([0, chartWidth])
         .domain(d3.extent(asmr_data[0], data => data.time_series.average_views.dates))
-        .range([0, chartWidth]);
-    console.log(xTimeScale)
     // Configure a linear scale with a range between the chartHeight and 0
     var yLinearScale = d3.scaleLinear()
+        .range([chartHeight, 0])
         .domain([0, d3.max(asmr_data[0], data => data.time_series.average_views.values)])
-        .range([chartHeight, 0]);
-    console.log(yLinearScale)
 
     // Create two new functions passing the scales in as arguments
     // These will be used to create the chart's axes
-    var bottomAxis = d3.axisBottom(xTimeScale);
-    var leftAxis = d3.axisLeft(yLinearScale);
+    var bottomAxis = d3.axisBottom(xTimeScale)
+    var leftAxis = d3.axisLeft(yLinearScale)
     
     // Configure a line function which will plot the x and y coordinates using our scales
     var drawLine = d3.line()
         .x(data => xTimeScale(data.time_series.average_views.dates))
-        .y(data => yLinearScale(data.time_series.average_views.values));
-    console.log(drawLine)
+        .y(data => yLinearScale(data.time_series.average_views.values))
     // Append an SVG path and plot its points using the line function
     chartGroup.append("path")
         // The drawLine function returns the instructions for creating the line for asmr_data
