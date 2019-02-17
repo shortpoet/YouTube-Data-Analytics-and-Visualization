@@ -6,7 +6,7 @@ var margin = {
   top: 20,
   right: 40,
   bottom: 80,
-  left: 100
+  left: 20
 };
 
 var width = svgWidth - margin.left - margin.right;
@@ -100,7 +100,7 @@ function yScale(asmrData, chosenYAxis) {
   function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
   
     if (chosenXAxis === "subs") {
-      var xlabel = "subs";
+      var xlabel = "Subscribers";
     }
     else if (chosenXAxis === "views") {
       var xlabel = "Views";
@@ -113,10 +113,10 @@ function yScale(asmrData, chosenYAxis) {
       var ylabel = "Channel Age";
     }
     else if (chosenYAxis === "upload_frequency") {
-        var ylabel = "Upload Frequency";
+        var ylabel = "Days Between Uploads";
       }
-    else {
-      var ylabel = "Comment Count";
+    else if (chosenYAxis === "avg_views_video") {
+      var ylabel = "Average Views / Video";
     }
   
     var toolTip = d3.tip()
@@ -149,6 +149,9 @@ d3.json('asmr_channels').then(function(asmrData) {
       data.uploads = +data.uploads
       data.subs = +data.subs
       data.views = +data.views
+      data.avg_views_video = +data.avg_views_video
+      data.upload_frequency = +data.upload_frequency
+      data.channel_age = +data.channel_age
   })
   console.log(asmrData)
     
@@ -168,7 +171,7 @@ d3.json('asmr_channels').then(function(asmrData) {
   // append y axis
   var yAxis = chartGroup.append("g")
     .classed("y-axis", true)
-    //.attr("transform", `translate(${width})`)
+    .attr("transform", `translate(${width-margin.right})`)
     .call(leftAxis);
 
 
@@ -200,7 +203,7 @@ d3.json('asmr_channels').then(function(asmrData) {
     .attr("transform", `translate(${width / 2}, ${height + 20})`)
     .classed("axis-text", true);
   var yLabelsGroup = chartGroup.append("g")
-    .attr("transform", `translate(${-(margin.left)}, ${(height / 2)}) rotate(-90)`)
+    .attr("transform", `translate(${(width-margin.right)}, ${(height / 2)}) rotate(-90)`)
     //.attr("dy", "1em")
     //.classed("axis-text", true);
 
@@ -212,7 +215,7 @@ d3.json('asmr_channels').then(function(asmrData) {
     .attr("y", 20)
     .attr("value", "subs") // value to grab for event listener
     .classed("active", true)
-    .text("subs");
+    .text("Subscribers");
 
   var viewsLabel = xLabelsGroup.append("text")
     .attr("x", 0)
@@ -240,14 +243,14 @@ d3.json('asmr_channels').then(function(asmrData) {
     .attr("y", 60)
     .attr("value", "upload_frequency") // value to grab for event listener
     .classed("inactive", true)
-    .text("Upload Frequency");
+    .text("Days Between Uploads");
 
-    var commentCountLabel = yLabelsGroup.append("text")
+    var avgVidViewsLabel = yLabelsGroup.append("text")
     .attr("x", 0)
     .attr("y", 80)
-    .attr("value", "comment_count") // value to grab for event listener
+    .attr("value", "avg_views_video") // value to grab for event listener
     .classed("inactive", true)
-    .text("Comment Count");
+    .text("Average Views / Video");
 
   // updateToolTip function above csv import
   var circlesGroup = updateToolTip(chosenXAxis, chosenYAxis, circlesGroup);
@@ -337,7 +340,7 @@ d3.json('asmr_channels').then(function(asmrData) {
           uploadFrequencyLabel
             .classed("active", false)
             .classed("inactive", true);
-          commentCountLabel
+          avgVidViewsLabel
             .classed("active", false)
             .classed("inactive", true);
         }
@@ -351,7 +354,7 @@ d3.json('asmr_channels').then(function(asmrData) {
           uploadFrequencyLabel
             .classed("active", false)
             .classed("inactive", true);
-          commentCountLabel
+          avgVidViewsLabel
             .classed("active", false)
             .classed("inactive", true);
         }
@@ -365,7 +368,7 @@ d3.json('asmr_channels').then(function(asmrData) {
           uploadFrequencyLabel
             .classed("active", true)
             .classed("inactive", false);
-          commentCountLabel
+          avgVidViewsLabel
             .classed("active", false)
             .classed("inactive", true);
         }
@@ -379,7 +382,7 @@ d3.json('asmr_channels').then(function(asmrData) {
           uploadFrequencyLabel
             .classed("active", false)
             .classed("inactive", true);
-          commentCountLabel
+          avgVidViewsLabel
             .classed("active", true)
             .classed("inactive", false);
         }
