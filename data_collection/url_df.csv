@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ,channel,url,sb_url
 0,Angelica,https://www.youtube.com/channel/UCq7jt5BQ6LTULnRbLca0XdQ,https://socialblade.com/youtube/channel/UCq7jt5BQ6LTULnRbLca0XdQ/monthly
 1,ASMRctica,https://www.youtube.com/channel/UCi8QgZckGYg3RFvEbdkMWfg,https://socialblade.com/youtube/channel/UCi8QgZckGYg3RFvEbdkMWfg/monthly
@@ -49,3 +50,57 @@
 48,TirarADeguello,https://www.youtube.com/user/TirarADeguello,https://socialblade.com/youtube/user/TirarADeguello/monthly
 49,TonyBomboniASMR,https://www.youtube.com/user/Asmrer,https://socialblade.com/youtube/user/Asmrer/monthly
 50,WhispersRedASMR,https://www.youtube.com/user/WhispersRedASMR,https://socialblade.com/youtube/user/WhispersRedASMR/monthly
+=======
+,channel,url,rank,birthyear,age,uploads,subs,total_views,channel_creation,gender,country,category,twitter,instagram,twitch,facebook,type,sb_url
+0,Angelica,https://www.youtube.com/channel/UCq7jt5BQ6LTULnRbLca0XdQ,33,,,284,164223,28180506,8/2/2015,F,US,People,TRUE,TRUE,FALSE,FALSE,channel,https://socialblade.com/youtube/channel/UCq7jt5BQ6LTULnRbLca0XdQ/monthly
+1,ASMRctica,https://www.youtube.com/channel/UCi8QgZckGYg3RFvEbdkMWfg,,,,76,27066,4070797,9/24/2015,M,SE,Entertainment,TRUE,TRUE,FALSE,FALSE,channel,https://socialblade.com/youtube/channel/UCi8QgZckGYg3RFvEbdkMWfg/monthly
+2,ASMRDarling,https://www.youtube.com/channel/UCikebqFWoT3QC9axUbXCPYw,4,1997,22,153,2250614,417889554,12/11/2014,F,US,Entertainment,TRUE,TRUE,FALSE,TRUE,channel,https://socialblade.com/youtube/channel/UCikebqFWoT3QC9axUbXCPYw/monthly
+3,ASMRGlow,https://www.youtube.com/channel/UCFmL725KKPx2URVPvH3Gp8w,5,1994,25,157,723721,119915280,10/24/2016,F,ISR,People,TRUE,TRUE,TRUE,FALSE,channel,https://socialblade.com/youtube/channel/UCFmL725KKPx2URVPvH3Gp8w/monthly
+4,ASMRKittyKlaw,https://www.youtube.com/channel/UCo-gAYrvd7WIrCRsNueddtQ,1,,,184,887195,141334295,8/14/2015,F,RS,People,FALSE,TRUE,TRUE,FALSE,channel,https://socialblade.com/youtube/channel/UCo-gAYrvd7WIrCRsNueddtQ/monthly
+5,ASMRPPOMO,https://www.youtube.com/user/PPOMODOLI,8,1992,27,334,1703334,351067922,10/22/2013,F,KR,Entertainment,TRUE,FALSE,TRUE,FALSE,user,https://socialblade.com/youtube/user/PPOMODOLI/monthly
+6,ASMRrequests,https://www.youtube.com/user/ASMRrequests,17,1991,28,201,500041,124203848,5/17/2012,F,US,People,TRUE,TRUE,FALSE,TRUE,user,https://socialblade.com/youtube/user/ASMRrequests/monthly
+7,ASMRSoundSpace,https://www.youtube.com/channel/UC7wwQl26xO9-6HLWyrhNXKg,47,,,57,189710,31102900,2/12/2016,M,GB,Entertainment,FALSE,FALSE,FALSE,FALSE,channel,https://socialblade.com/youtube/channel/UC7wwQl26xO9-6HLWyrhNXKg/monthly
+8,ASMRSurge,https://www.youtube.com/user/ASMRSURGE,25,,,142,651738,125914998,9/25/2012,M,PL,Entertainment,FALSE,FALSE,FALSE,FALSE,user,https://socialblade.com/youtube/user/ASMRSURGE/monthly
+9,ASMRTheChew,https://www.youtube.com/channel/UCKB6QpT1TKDfJY5W7il8G6Q,38,1971,48,1624,561606,113489035,11/1/2015,F,US,People,TRUE,TRUE,FALSE,TRUE,channel,https://socialblade.com/youtube/channel/UCKB6QpT1TKDfJY5W7il8G6Q/monthly
+10,Bluewhisper,https://www.youtube.com/channel/UC7wT_mqUvCHEIWm1cuw_T1Q,,1990,29,75,338,46399,4/23/2015,F,US,HowTo,FALSE,TRUE,FALSE,FALSE,channel,https://socialblade.com/youtube/channel/UC7wT_mqUvCHEIWm1cuw_T1Q/monthly
+11,CreativeCalmASMR,https://www.youtube.com/channel/UCrIPWaSEHW4CqX0hGtxsQwg,,1992,27,267,202232,32720764,9/29/2015,F,GB,Entertainment,TRUE,TRUE,FALSE,FALSE,channel,https://socialblade.com/youtube/channel/UCrIPWaSEHW4CqX0hGtxsQwg/monthly
+12,DrTASMR,https://www.youtube.com/channel/UCgGhVPf9JH9S41mJwJwgNbg,24,,,308,315064,89237889,5/22/2016,M,US,Entertainment,TRUE,FALSE,FALSE,TRUE,channel,https://socialblade.com/youtube/channel/UCgGhVPf9JH9S41mJwJwgNbg/monthly
+13,EphemeralRift,url => https://www.youtube.com/user/EphemeralRift,13,1971,48,1231,595015,229702976,9/14/2011,M,US,Entertainment,TRUE,FALSE,FALSE,TRUE,channel,url => https://www.youtube.com/user/EphemeralRift
+14,FairyCharASMR,https://www.youtube.com/user/feirychaRstaRs,21,1998,21,253,412643,92724646,12/16/2009,F,US,Entertainment,TRUE,TRUE,FALSE,FALSE,user,https://socialblade.com/youtube/user/feirychaRstaRs/monthly
+15,fastASMR,sb_url => https://socialblade.com/youtube/channel/UCHiof82PvgZrXFF-BRMvGDg/monthly,16,1990,29,589,410536,119438613,10/22/2011,F,US,Entertainment,TRUE,TRUE,FALSE,FALSE,user,sb_url => https://socialblade.com/youtube/channel/UCHiof82PvgZrXFF-BRMvGDg/monthly
+16,FredsVoiceASMR,https://www.youtube.com/user/WhisperMister1,39,1990,29,193,339108,53926121,5/23/2011,M,GB,Entertainment,TRUE,TRUE,FALSE,TRUE,user,https://socialblade.com/youtube/user/WhisperMister1/monthly
+17,FrivolousFoxASMR,https://www.youtube.com/channel/UCoNfsDH8sZe13u7rSxaEBkw,6,1994,25,310,1053497,232196121,5/2/2016,F,US,People,TRUE,TRUE,TRUE,FALSE,user,https://socialblade.com/youtube/channel/UCoNfsDH8sZe13u7rSxaEBkw
+18,GentleWhisperingASMR,https://www.youtube.com/user/GentleWhispering,3,1986,33,393,1617151,578125378,2/24/2011,F,US,Entertainment,FALSE,TRUE,FALSE,TRUE,user,https://socialblade.com/youtube/user/GentleWhispering/monthly
+19,GibiASMR,https://www.youtube.com/channel/UCE6acMV3m35znLcf0JGNn7Q,2,1994,25,372,1685347,429129059,6/19/2016,F,US,Entertainment,TRUE,TRUE,TRUE,FALSE,channel,https://socialblade.com/youtube/channel/UCE6acMV3m35znLcf0JGNn7Q/monthly
+20,GoodnightMoon,https://www.youtube.com/channel/UClMJgjg2z_IrRm6J9KrhcuQ,10,1998,21,87,430302,59183471,1/16/2014,F,GB,People,FALSE,TRUE,FALSE,FALSE,channel,https://socialblade.com/youtube/channel/UClMJgjg2z_IrRm6J9KrhcuQ/monthly
+21,GwenGwiz,https://www.youtube.com/user/gwenswinarton,26,1995,24,236,368466,39537838,1/19/2011,F,CA,Entertainment,TRUE,TRUE,FALSE,TRUE,user,https://socialblade.com/youtube/user/gwenswinarton/monthly
+22,HeatherFeatherASMR,https://www.youtube.com/user/HeatherFeatherASMR,18,1984,35,319,507166,155106841,9/20/2012,F,US,People,TRUE,TRUE,FALSE,TRUE,user,https://socialblade.com/youtube/user/HeatherFeatherASMR/monthly
+23,HermeticKitten,https://www.youtube.com/user/hermetickitten,44,1990,29,508,293771,71458273,10/2/2013,F,GB,Entertainment,TRUE,TRUE,FALSE,TRUE,user,https://socialblade.com/youtube/user/hermetickitten/monthly
+24,JASMR,https://www.youtube.com/channel/UCZ6B7VjEacNY1z3M_xqM_aA,,1996,22,307,119718,19885236,12/26/2017,F,US,Entertainment,FALSE,TRUE,FALSE,FALSE,channel,https://socialblade.com/youtube/channel/UCZ6B7VjEacNY1z3M_xqM_aA/monthly
+25,JojosAsmr,url => https://www.youtube.com/channel/UCjyi6by44TTH0j_U3vXEGpA,12,1998,21,377,534532,117567758,1/19/2015,M,US,People,FALSE,TRUE,FALSE,FALSE,channel,url => https://www.youtube.com/channel/UCjyi6by44TTH0j_U3vXEGpA
+26,KarunaSatoriASMR,url => https://www.youtube.com/user/KarunaSatoriASMR,14,1991,28,697,626732,146226984,10/6/2013,F,US,People,TRUE,FALSE,FALSE,TRUE,user,url => https://www.youtube.com/user/KarunaSatoriASMR
+27,LatteASMR,https://www.youtube.com/channel/UCQe2Y7V-C9bNMAcCJCBvzQQ,23,1993,26,135,677225,138883059,1/4/2016,F,KR,People,FALSE,FALSE,FALSE,FALSE,channel,https://socialblade.com/youtube/channel/UCQe2Y7V-C9bNMAcCJCBvzQQ/monthly
+28,LauraLemurexASMR,https://www.youtube.com/user/LauraLemureX,40,1996,23,264,153231,33505260,11/14/2011,F,GB,People,TRUE,FALSE,FALSE,TRUE,user,https://socialblade.com/youtube/user/LauraLemureX/monthly
+29,MarnoASMR,https://www.youtube.com/channel/UC4RdEwzh0r3CuTEElRQ6dpg,36,1989,30,126,172940,18926397,1/14/2018,M,BE,People,TRUE,TRUE,FALSE,FALSE,channel,https://socialblade.com/youtube/channel/UC4RdEwzh0r3CuTEElRQ6dpg/monthly
+30,MassageASMR,https://www.youtube.com/user/MassageASMR,11,,,691,753553,283711132,12/5/2012,M,AU,Entertainment,FALSE,FALSE,FALSE,TRUE,user,https://socialblade.com/youtube/user/MassageASMR/monthly
+31,MiniyuASMR,https://www.youtube.com/user/miniyuasmr,48,1988,31,570,493734,159027656,8/27/2013,F,KR,People,TRUE,TRUE,FALSE,TRUE,user,https://socialblade.com/youtube/user/miniyuasmr/monthly
+32,MissASMR,https://www.youtube.com/user/videomissasmr,32,1996,23,233,233418,53824452,9/26/2013,F,US,Entertainment,TRUE,TRUE,FALSE,TRUE,user,https://socialblade.com/youtube/user/videomissasmr/monthly
+33,OliviaKissperASMR,https://www.youtube.com/user/OliviaKissperASMR,30,1989,30,432,317551,97687202,8/21/2013,F,CR,Entertainment,FALSE,TRUE,FALSE,TRUE,user,https://socialblade.com/youtube/user/OliviaKissperASMR/monthly
+34,PelageaASMR,https://www.youtube.com/channel/UCNlMeUt5nOTQ-yfjXzRKVKA,9,1993,26,123,784179,161445940,8/22/2015,F,US,People,FALSE,TRUE,FALSE,TRUE,channel,https://socialblade.com/youtube/channel/UCNlMeUt5nOTQ-yfjXzRKVKA/monthly
+35,PJDreams,https://www.youtube.com/channel/UCLFeUtRSPnsNsmrPE6VoICg,22,1995,24,338,379590,57599987,6/1/2016,M,CA,Entertainment,TRUE,FALSE,FALSE,FALSE,channel,https://socialblade.com/youtube/channel/UCLFeUtRSPnsNsmrPE6VoICg/monthly
+36,RapunzelASMR,https://www.youtube.com/user/SoftlySpokenMe,27,1986,33,418,417877,79898568,5/23/2014,F,BE,Entertainment,FALSE,FALSE,FALSE,TRUE,user,https://socialblade.com/youtube/user/SoftlySpokenMe/monthly
+37,SAS-ASMR,https://www.youtube.com/channel/UCp4LfMtDfoa29kTlLnqQ5Mg,19,1982,37,557,5119349,1062093485,4/6/2016,F,CA,Entertainment,FALSE,TRUE,FALSE,TRUE,channel,https://socialblade.com/youtube/channel/UCp4LfMtDfoa29kTlLnqQ5Mg/monthly
+38,ScottishMurmurs,https://www.youtube.com/channel/UCLcyg3kjSwlUxjnQhSMqfmg,,1994,24,163,125597,20782825,7/18/2016,F,GB,People,FALSE,TRUE,FALSE,FALSE,channel,https://socialblade.com/youtube/channel/UCLcyg3kjSwlUxjnQhSMqfmg/monthly
+39,SensorAdiASMR,https://www.youtube.com/user/SensorAdi,41,,,658,201662,50998182,10/13/2013,M,US,Entertainment,TRUE,TRUE,FALSE,TRUE,user,https://socialblade.com/youtube/user/SensorAdi/monthly
+40,SleepyTinglesASMR,https://www.youtube.com/channel/UCuxrVcQuoORj9lvVrEzB_hA,45,1992,27,274,250523,40871954,11/29/2016,M,ES,Entertainment,TRUE,TRUE,FALSE,TRUE,channel,https://socialblade.com/youtube/channel/UCuxrVcQuoORj9lvVrEzB_hA/monthly
+41,softlygaloshes,url => https://www.youtube.com/user/softlygaloshes,20,1991,28,454,331777,84358390,6/6/2012,F,US,Entertainment,TRUE,FALSE,FALSE,TRUE,channel,url => https://www.youtube.com/user/softlygaloshes
+42,SouthernASMRSounds,https://www.youtube.com/channel/UCpw8ZudbxklOi73pWeI6s9A,,,,1521,148877,48462952,7/15/2015,F,US,People,TRUE,FALSE,FALSE,TRUE,channel,https://socialblade.com/youtube/channel/UCpw8ZudbxklOi73pWeI6s9A/monthly
+43,SpringbokASMR,https://www.youtube.com/channel/UC-r8XyqbggZobMiNsqgWkDg,35,,,135,158372,34688044,4/25/2014,F,US,Entertainment,FALSE,FALSE,FALSE,FALSE,channel,https://socialblade.com/youtube/channel/UC-r8XyqbggZobMiNsqgWkDg/monthly
+44,suellASMR,https://www.youtube.com/channel/UCiQOZOhSZpLaigDGgYhT4ng,50,1982,37,280,1618201,372189822,4/23/2017,F,US,Entertainment,TRUE,TRUE,FALSE,FALSE,channel,https://socialblade.com/youtube/channel/UCiQOZOhSZpLaigDGgYhT4ng/monthly
+45,TheOneLiliumASMR,https://www.youtube.com/user/TheOneLilium,34,1987,32,445,219256,64828412,4/24/2012,F,DK,People,FALSE,FALSE,TRUE,TRUE,user,https://socialblade.com/youtube/user/TheOneLilium/monthly
+46,TingleBelleASMR,https://www.youtube.com/channel/UCAL_MPhlbwBNbotjRAzs5uQ,42,1987,32,98,161429,28310808,9/3/2015,F,US,Entertainment,FALSE,FALSE,FALSE,FALSE,channel,https://socialblade.com/youtube/channel/UCAL_MPhlbwBNbotjRAzs5uQ/monthly
+47,TingTingASMR,https://www.youtube.com/channel/UClqNSqnWeOOUVkzcJFj4rBw,,1991,27,298,521795,85056106,4/26/2017,F,CHN,Entertainment,TRUE,TRUE,FALSE,FALSE,channel,https://socialblade.com/youtube/channel/UClqNSqnWeOOUVkzcJFj4rBw/monthly
+48,TirarADeguello,https://www.youtube.com/user/TirarADeguello,37,,,602,129832,27883383,9/25/2010,M,US,People,TRUE,FALSE,FALSE,FALSE,user,https://socialblade.com/youtube/user/TirarADeguello/monthly
+49,TonyBomboniASMR,https://www.youtube.com/user/Asmrer,43,1994,25,866,276923,101701872,7/18/2012,M,US,Entertainment,TRUE,TRUE,FALSE,TRUE,user,https://socialblade.com/youtube/user/Asmrer/monthly
+50,WhispersRedASMR,https://www.youtube.com/user/WhispersRedASMR,7,1978,41,392,684380,177072880,4/12/2013,F,GB,People,TRUE,TRUE,FALSE,TRUE,user,https://socialblade.com/youtube/user/WhispersRedASMR/monthly
+>>>>>>> a15968c96294b82cb4683ae6b5426e6997072411
