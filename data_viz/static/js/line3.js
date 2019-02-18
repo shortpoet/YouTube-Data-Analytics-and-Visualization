@@ -75,16 +75,35 @@ function drawLine(endpoint) {
         }) 
     })
 
-    var dropdownDiv = d3.select('.lineSelect').append('div').classed('form-group', true).append('label')
-      .attr('for', 'lineChannelSelect')
+    var dropdownDiv1 = d3.select('.lineSelect1').append('div').classed('form-group', true).append('label')
+      .attr('for', 'lineChannelSelect1')
       .text('Select X Axis Data Vector');
-    var dropdown = dropdownDiv.append('select').classed('form-control', true).attr('id', 'lineChannelSelect');
-    var dropdownOptions = dropdown.selectAll('option').data(asmr_data).enter()
+    var dropdown1 = dropdownDiv1.append('select').classed('form-control', true).attr('id', 'lineChannelSelect1');
+    var dropdownOptions1 = dropdown1.selectAll('option').data(asmr_data).enter()
+                                  .append('option')
+                                  .text(d => d.channel_name)
+                                  .attr('value', d => d.channel_name);
+
+    var dropdownDiv2 = d3.select('.lineSelect2').append('div').classed('form-group', true).append('label')
+      .attr('for', 'lineChannelSelect2')
+      .text('Select X Axis Data Vector');
+    var dropdown2 = dropdownDiv2.append('select').classed('form-control', true).attr('id', 'lineChannelSelect2');
+    var dropdownOptions2 = dropdown2.selectAll('option').data(asmr_data).enter()
                                   .append('option')
                                   .text(d => d.channel_name)
                                   .attr('value', d => d.channel_name);
   
-    var chosenSelect = headers[0]
+    var series_options = d3.keys(asmr_data[0]['time_series'])
+    var radioDiv = d3.select('.seriesSelect').append('div').classed('form-check form-check-inline', true).append('label')
+      .attr('for', 'lineSeriesSelect')
+      .text('Select X Axis Data Vector');
+    var radioGroup = radioDiv.append('input').classed('form-check-inline', true).attr('id', 'lineChannelSelect');
+    var dropdownOptions2 = dropdown2.selectAll('option').data(asmr_data).enter()
+                                  .append('option')
+                                  .text(d => d.channel_name)
+                                  .attr('value', d => d.channel_name);
+  
+    var chosenSelect = 'Angelica'
   
 
     // Configure a time scale
