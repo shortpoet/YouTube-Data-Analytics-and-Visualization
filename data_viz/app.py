@@ -79,6 +79,10 @@ def asmr_channels():
 def table():
     return render_template("table.html")
 
+@app.route("/youtube250")
+def youtube250():
+    return render_template("Top250Index.html")
+
 @app.route("/linedata")
 def linedata():
     # return jsonify({'date':['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
