@@ -49,6 +49,43 @@ function yScale(channelData, chosenSeries) {
   return xTimeScale
 }
 
+function renderXAxes(newXScale, xAxis) {
+  var bottomAxis = d3.axisBottom(newXScale);
+
+  xAxis.transition()
+    .duration(1000)
+    .call(bottomAxis);
+
+  return xAxis;
+}
+
+function renderYAxes(newYScale, yAxis) {
+  var leftAxis = d3.axisLeft(newYScale);
+
+  yAxis.transition()
+    .duration(1000)
+    .call(leftAxis);
+
+  return yAxis;
+}
+
+function renderPath(chartGroup, newXScale, chosenSeries, newYScale, drawLine) {
+  
+  
+  chartGroup.transition()
+    .duration(1000)
+    .attr("d", drawLine())
+
+  return circlesGroup;
+}
+
+function lineFunc(newXScale, newYScale, chosenSeries) {
+  var drawLine = d3.line()
+    .x(data => newXScale(data.dates))
+    .y(data => newYScale(data[chosenSeries]))
+    .curve(d3.curveMonotoneX)
+  return drawLine
+}
 
 
 

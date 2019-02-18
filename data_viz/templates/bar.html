@@ -40,43 +40,29 @@
               </div>
           </div>
         </div>
-      </div>
+      
     </header>
   </section>
   <div class="row">
-    <div class="col-md-3">
-      <div class="lineSelect1">
+    <div class="col-md-12">
+      <div class="barSelect">
+        <button type="button" class="btn btn-lg" id="alphabetize"><i class="fas fa-sort-alpha-up"></i>&nbsp</button>            
         <br>
-        <p>Select channel</p>
+        <p>Click the button to alphabetize or anywhere in chart to sort by X axis.  Click again to resort in reverse order.</p>
+        <br>
+        <p>Select Sort Column</p>
       </div>
     </div>
-    <div class="col-md-6">
-      <div class="seriesSelect">
-        <br>
-        <p>Select time series</p>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="lineSelect2">
-        <br>
-        <p>Select channel</p>
-      </div>
-    </div>
-  </div>
-  <section id="linesection">
+  <section id="barsection">
     <header>
-      <div class="container">
         <div class="row">
           <div class="col-md-12 text-center">
-            <h3>Line</h>
+            <h3>Bar</h>
           </div>
-        </div>
       </div>
     </header>
-    <div class="container">
       <div class="row">
-        <div class="col-md-6" id="line1">
-        <div class="col-md-6" id="line2">
+        <div class="col-md-12" id="bar">
       </div>
     </div>
   </div>
@@ -98,7 +84,7 @@
     
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.js"></script>
-  <script src="{{ url_for('static', filename='js/line3.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/bar.js') }}"></script>
 
 </body>
 
