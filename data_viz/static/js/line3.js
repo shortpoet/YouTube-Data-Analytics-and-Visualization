@@ -43,18 +43,49 @@ function drawLine(endpoint) {
         data.time_series.average_views.forEach(day => {
             day['average_views'] = +day['average_views']
         }) 
-        // data.time_series.average_views.average_views = +data.time_series.average_views.average_views
-        // data.time_series.daily_subs.date = parseTime(data.time_series.daily_subs.date)
-        // data.time_series.daily_subs.daily_subs = +data.time_series.daily_subs.daily_subs
-        // data.time_series.daily_views.date = parseTime(data.time_series.daily_views.date)
-        // data.time_series.daily_views.daily_views = +data.time_series.daily_views.daily_views
-        // data.time_series.monthy_views.date = parseTime(data.time_series.monthy_views.date)
-        // data.time_series.monthy_views.monthy_views = +data.time_series.monthy_views.monthy_views
-        // data.time_series.total_subs.date = parseTime(data.time_series.total_subs.date)
-        // data.time_series.total_subs.total_subs = +data.time_series.total_subs.total_subs
-        // data.time_series.total_views.date = parseTime(data.time_series.total_views.date)
-        // data.time_series.total_views.total_views = +data.time_series.total_views.total_views
+        data.time_series.daily_subs.forEach(day => {
+            day['dates'] = parseTime(day['dates'])
+        }) 
+        data.time_series.daily_subs.forEach(day => {
+            day['daily_subs'] = +day['daily_subs']
+        }) 
+        data.time_series.daily_views.forEach(day => {
+            day['dates'] = parseTime(day['dates'])
+        }) 
+        data.time_series.daily_views.forEach(day => {
+            day['daily_views'] = +day['daily_views']
+        }) 
+        data.time_series.monthly_views.forEach(day => {
+            day['dates'] = parseTime(day['dates'])
+        }) 
+        data.time_series.monthly_views.forEach(day => {
+            day['monthly_views'] = +day['monthly_views']
+        }) 
+        data.time_series.total_subs.forEach(day => {
+            day['total_subs'] = parseTime(day['dates'])
+        }) 
+        data.time_series.total_subs.forEach(day => {
+            day['total_subs'] = +day['total_subs']
+        }) 
+        data.time_series.total_views.forEach(day => {
+            day['total_views'] = parseTime(day['dates'])
+        }) 
+        data.time_series.total_views.forEach(day => {
+            day['total_views'] = +day['total_views']
+        }) 
     })
+
+    var dropdownDiv = d3.select('.lineSelect').append('div').classed('form-group', true).append('label')
+      .attr('for', 'lineChannelSelect')
+      .text('Select X Axis Data Vector');
+    var dropdown = dropdownDiv.append('select').classed('form-control', true).attr('id', 'lineChannelSelect');
+    var dropdownOptions = dropdown.selectAll('option').data(asmr_data).enter()
+                                  .append('option')
+                                  .text(d => d.channel_name)
+                                  .attr('value', d => d.channel_name);
+  
+    var chosenSelect = headers[0]
+  
 
     // Configure a time scale
     // d3.extent returns the an array containing the min and max values for the property specified
@@ -75,6 +106,7 @@ function drawLine(endpoint) {
     var drawLine = d3.line()
         .x(data => xTimeScale(data.dates))
         .y(data => yLinearScale(data.average_views))
+        .curve(d3.curveMonotoneX)
     // Append an SVG path and plot its points using the line function
     chartGroup.append("path")
         // The drawLine function returns the instructions for creating the line for asmr_data

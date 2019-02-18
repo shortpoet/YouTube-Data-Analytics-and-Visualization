@@ -28,9 +28,9 @@ def asmr_channels():
     # for i in mongo.db.social_blade_asmr_data.find():
     #     asmr_data = json.dumps(i, indent=4, default=json_util.default)
 
-    db_response = mongo.db.social_blade_asmr_data.find_one({}, {'_id': False})
+    sb_db_response = mongo.db.asmr_data.find_one({}, {'_id': False})
     asmr_data = []
-    for channel, data in db_response.items():
+    for channel, data in sb_db_response.items():
         asmr_data.append(data)
     for datum in asmr_data:
         datum['uploads'] = int(datum['uploads'])
@@ -46,6 +46,17 @@ def asmr_channels():
         datum['avg_views_video'] = round(datum['views']/datum['uploads'])
         datum['avg_views_subscriber'] = round(datum['views']/datum['subs'])
         datum['date_created'] = datum['date_created'].isoformat()
+
+        # video_stats_dict = {}
+        # for channel in response:
+        #     video_stats_dict[channel] = {}
+        #     durlist = []
+        #     for dur in channel['duration']:
+        #         durlist.append(dur)
+        #     video_stats_dict[channel]['total_duration'] = sum(durlist)
+                
+
+
         # datum['total_duration'] = sum([video['duration'] for video in datum['videos']])
         # datum['total_comments'] = sum([video['comments'] for video in datum['videos']])
         # datum['total_likes'] = sum([video['likes'] for video in datum['videos']])

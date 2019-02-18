@@ -351,7 +351,7 @@ else:
 
 for index, url in enumerate(urls):
     channel = channel_names[index]
-    cacheFilePath = f"./../../../youtube_project_caches/{channel}_youtube_scrape_html.txt"
+    cacheFilePath = f"C:\\Users\\soria\\Documents\\WashUDataDocuments\\HwActivites\\youtube_project_caches\\{channel}_youtube_scrape_html.txt"
     if os.path.isfile(cacheFilePath):
         with open(cacheFilePath, encoding='utf-8') as cacheFile:
             html = cacheFile.read() 
@@ -359,7 +359,7 @@ for index, url in enumerate(urls):
         video_soup.find_all('a', id='video-title')
         anchors = video_soup.find_all('a', id='video-title')
         videos = []
-        for anchor in anchors:
+        for index, anchor in enumerate(anchors):
             _id = anchor['href'][9:]
             video_dict = {'video_id': _id}
             videos.append(video_dict)
@@ -409,21 +409,31 @@ for index, url in enumerate(urls):
         target = channel + '.videos'
         collection.update_one({}, {'$set': {target: videos} }, upsert=True)
 
+
+    cacheFilePath = f"C:\\Users\\soria\\Documents\\WashUDataDocuments\\HwActivites\\youtube_project_caches\\{channel}_youtube_scrape_html.txt"
+    if os.path.isfile(cacheFilePath):
+        with open(cacheFilePath, encoding='utf-8') as cacheFile:
+            html = cacheFile.read() 
+
+with open(cacheFilePath, "w", encoding='utf-8') as cacheFile:
+            cacheFile.write(html)
+
+
 collection = mongoDb.asmr_data
 if mongoDb.asmr_data.find_one():
-    collection = mongoDb.youtube_video_search_response
     video_search_response_dict = {}
-    if mongoDb.youtube_video_search_response.find_one():
-        for index, url in enumerate(urls):
-            channel = channel_names[index]
-            collection = mongoDb.asmr_data
-            video_search_response_dict.setdefault(channel, {})
-            old_video_dict_list = loads(dumps(collection.find({channel : {'$exists':True}})))[0][channel]['videos']
-            new_video_dict_list = []
-            for i, video in enumerate(old_video_dict_list):
-                collection =mongoDb.youtube_video_search_response
-                video_search_response = loads(dumps(collection.find({channel : {'$exists':True}})))[0][channel][i]
+    for index, url in enumerate(urls):
+        channel = channel_names[index]
+        collection = mongoDb.asmr_data
+        video_search_response_dict.setdefault(channel, {})
+        old_video_dict_list = loads(dumps(collection.find({channel : {'$exists':True}})))[0][channel]['videos']
+        new_video_dict_list = []
 
+        for i, video in enumerate(old_video_dict_list):
+            cacheFilePath = f"C:\\Users\\soria\\Documents\\WashUDataDocuments\\HwActivites\\youtube_project_caches\\{channel}_video_{i}_yt_api_resp.txt"
+            if os.path.isfile(cacheFilePath):
+                with open(cacheFilePath, encoding='utf-8') as cacheFile:
+                    video_search_response = json.loads(cacheFile.read()) 
                 try:
                     published_at = video_search_response['items'][0]['snippet']['publishedAt']
                 except:
@@ -459,93 +469,11 @@ if mongoDb.asmr_data.find_one():
                     like_count = 0
                 try:
                     topic_ids = video_search_response['items'][0]['topicDetails']['topicIds']
-                except:
-                    topic_ids = 0
-                try:
-                    relevant_topic_ids = video_search_response['items'][0]['topicDetails']['relevantTopicIds']
-                except:
-                    relevant_topic_ids = 0
-                video_dict = {
-                    'video_id': video_id, 'title': title, 'published_at': published_at, 'duration': duration,
-                    'comment_count': comment_count, 'like_count': like_count, 'dislike_count': dislike_count, 
-                    'category_id': category_id, 'topic_ids': topicCipher(topic_ids), 
-                    'relevant_topic_ids': topicCipher(relevant_topic_ids)
-                }            
-                new_video_dict_list.append(video_dict)
-            collection = mongoDb.asmr_data
-            target = channel + '.videos'
-            collection.update_one({}, {'$set': {target: new_video_dict_list} }, upsert=True)
-    else: 
-        video_search_response_dict = {}
-        for index, url in enumerate(urls):
-
-            channel = channel_names[index]
-            collection = mongoDb.asmr_data
-            video_search_response_dict.setdefault(channel, [])
-            old_video_dict_list = loads(dumps(collection.find({channel : {'$exists':True}})))[0][channel]['videos']
-            new_video_dict_list = []
-            for video in old_video_dict_list:
-
-
-                video_search_response = youtube.videos().list(
-                    id=video['video_id'],
-                    pageToken=None,
-                    part="snippet,contentDetails,statistics,topicDetails,id",
-                    maxResults=50
-
-
-                ).execute()
-
-                video_search_response_dict[channel].append(video_search_response)
-                collection = mongoDb.video_search_response
-                collection.update_one({}, {'$set': video_search_response_dict}, upsert=True)
-
-                try:
-                    published_at = video_search_response['items'][0]['snippet']['publishedAt']
-                except:
-                    published_at = 0
-                try:
-                    video_id = video_search_response['items'][0]['id']
-                except:
-                    video_id = 0
-                try:
-                    title = video_search_response['items'][0]['snippet']['title']
-                except:
-                    title = 0
-                try:
-                    duration = video_search_response['items'][0]['contentDetails']['duration']
-                    duration = str(isodate.parse_duration(duration).total_seconds())
-                except:
-                    duration = 0
-                try:
-                    category_id = video_search_response['items'][0]['snippet']['categoryId']
-                except:
-                    category_id = 0
-                try:
-                    comment_count = video_search_response['items'][0]['statistics']['commentCount']
-                except:
-                    comment_count = 0
-                try:
-                    dislike_count = video_search_response['items'][0]['statistics']['dislikeCount']
-                except:
-                    dislike_count = 0
-                try:
-                    like_count = video_search_response['items'][0]['statistics']['likeCount']
-                except:
-                    like_count = 0
-                try:
-                    topic_ids = video_search_response['items'][0]['topicDetails']['topicIds']
-                except:
-                    topic_ids = 0
-                try:
-                    relevant_topic_ids = video_search_response['items'][0]['topicDetails']['relevantTopicIds']
-                except:
-                    relevant_topic_ids = 0
-                try: 
                     topic_ids = topicCipher(topic_ids)
                 except:
                     topic_ids = 0
-                try: 
+                try:
+                    relevant_topic_ids = video_search_response['items'][0]['topicDetails']['relevantTopicIds']
                     relevant_topic_ids = topicCipher(relevant_topic_ids)
                 except:
                     relevant_topic_ids = 0
@@ -556,9 +484,91 @@ if mongoDb.asmr_data.find_one():
                     'relevant_topic_ids': relevant_topic_ids
                 }            
                 new_video_dict_list.append(video_dict)
-            collection = mongoDb.asmr_data
-            target = channel + '.videos'
-            collection.update_one({}, {'$set': {target: new_video_dict_list} }, upsert=True)
+                collection = mongoDb.asmr_data
+                target = channel + '.videos'
+                collection.update_one({}, {'$set': {target: new_video_dict_list} }, upsert=True)
+            else: 
+                video_search_response_dict = {}
+                for index, url in enumerate(urls):
+
+                    channel = channel_names[index]
+                    collection = mongoDb.asmr_data
+                    old_video_dict_list = loads(dumps(collection.find({channel : {'$exists':True}})))[0][channel]['videos']
+                    new_video_dict_list = []
+                    for i, video in enumerate(old_video_dict_list):
+
+
+                        video_search_response = youtube.videos().list(
+                            id=video['video_id'],
+                            pageToken=None,
+                            part="snippet,contentDetails,statistics,topicDetails,id",
+                            maxResults=50
+
+
+                        ).execute()
+                        cacheFilePath = f"C:\\Users\\soria\\Documents\\WashUDataDocuments\\HwActivites\\youtube_project_caches\\{channel}_video_{i}_yt_api_resp.txt"
+                        with open(cacheFilePath, "w", encoding='utf-8') as cacheFile:
+                            json.dump(video_search_response, cacheFile)
+                        try:
+                            published_at = video_search_response['items'][0]['snippet']['publishedAt']
+                        except:
+                            published_at = 0
+                        try:
+                            video_id = video_search_response['items'][0]['id']
+                        except:
+                            video_id = 0
+                        try:
+                            title = video_search_response['items'][0]['snippet']['title']
+                        except:
+                            title = 0
+                        try:
+                            duration = video_search_response['items'][0]['contentDetails']['duration']
+                            duration = str(isodate.parse_duration(duration).total_seconds())
+                        except:
+                            duration = 0
+                        try:
+                            category_id = video_search_response['items'][0]['snippet']['categoryId']
+                        except:
+                            category_id = 0
+                        try:
+                            comment_count = video_search_response['items'][0]['statistics']['commentCount']
+                        except:
+                            comment_count = 0
+                        try:
+                            dislike_count = video_search_response['items'][0]['statistics']['dislikeCount']
+                        except:
+                            dislike_count = 0
+                        try:
+                            like_count = video_search_response['items'][0]['statistics']['likeCount']
+                        except:
+                            like_count = 0
+                        try:
+                            topic_ids = video_search_response['items'][0]['topicDetails']['topicIds']
+                        except:
+                            topic_ids = 0
+                        try:
+                            relevant_topic_ids = video_search_response['items'][0]['topicDetails']['relevantTopicIds']
+                        except:
+                            relevant_topic_ids = 0
+                        try: 
+                            topic_ids = topicCipher(topic_ids)
+                        except:
+                            topic_ids = 0
+                        try: 
+                            relevant_topic_ids = topicCipher(relevant_topic_ids)
+                        except:
+                            relevant_topic_ids = 0
+                        video_dict = {
+                            'video_id': video_id, 'title': title, 'published_at': published_at, 'duration': duration,
+                            'comment_count': comment_count, 'like_count': like_count, 'dislike_count': dislike_count, 
+                            'category_id': category_id, 'topic_ids': topic_ids, 
+                            'relevant_topic_ids': relevant_topic_ids
+                        }            
+                        new_video_dict_list.append(video_dict)
+                        collection = mongoDb.asmr_data
+                        target = channel + '.videos'
+                        collection.update_one({}, {'$set': {target: new_video_dict_list} }, upsert=True)
+
 
 browser.quit()
 driver.quit()

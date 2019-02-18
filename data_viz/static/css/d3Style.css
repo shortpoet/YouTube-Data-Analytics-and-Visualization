@@ -90,6 +90,28 @@ rect.bar.highlight rect {
   fill: Maroon;
 }
 
+body {
+  font: 10px sans-serif;
+}
+
+.xAxis path, .yAxis path,
+.xAxis line, .yAxis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+/*.x.axis path {
+  display: none;
+}*/
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+L
+
 /* th { 
 	padding: 4px; 
 	border: 1px solid #CCC;
