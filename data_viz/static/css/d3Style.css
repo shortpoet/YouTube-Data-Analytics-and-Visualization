@@ -105,12 +105,14 @@ body {
   display: none;
 }*/
 
-.line1, .line2 {
+.line{
   fill: none;
   stroke: steelblue;
   stroke-width: 1.5px;
 }
-L
+
+
+
 
 /* th { 
 	padding: 4px; 
