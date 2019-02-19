@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   
-  <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/line.css') }}"> -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/line.css') }}"> -->
   <link rel="stylesheet" href="{{ url_for('static', filename='css/d3Style.css') }}">
   
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -31,7 +31,7 @@
 <body>
   <section id="header">
     <header>
-      <div class="container">
+      <div class="container jumbotron">
         <div class="row">
           <div class="col-md-12 text-center" id="heading">
             <h1>How to be a successful ASMRtist?</h1>
@@ -42,6 +42,26 @@
         </div>
       
     </header>
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand logo" href="index.html">
+                    <span class="nav-color-light"></span></a>
+            </div>
+    
+            <div class="nav navbar-nav navbar-right">
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">Plots<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="">Scatter</a></li>
+                        <li><a href="bar">Bar Graph</a></li>
+                        <li><a href="line">Line Graph</a></li>
+                        <li><a href="table">Table</a></li>
+                        <li><a href="Top250Index">Top 250</a></li>
+                    </ul>
+                </li>
+            </div>
+        </div>
+    </nav>
   </section>
   <div class="row">
     <div class="col-md-12">
