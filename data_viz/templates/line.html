@@ -29,9 +29,10 @@
 
 
 <body>
+  <div class="container-fluid">
   <section id="header">
     <header>
-      <div class="container">
+      <div class="container jumbotron">
         <div class="row">
           <div class="col-md-12 text-center" id="heading">
             <h1>How to be a successful ASMRtist?</h1>
@@ -73,8 +74,14 @@
         </div>
       </div>
     </header>
-    <div class="container" id="line1"> </div>
-    <div class="container" id="line2"> </div>
+    <div class="row">
+      <div class="container col-md-6">
+        <div id="line1"> </div>
+      </div>
+      <div class="container col-md-6">
+        <div id="line2"> </div>
+      </div>
+    </div>
   </section>
   <section id="footer">
     <footer>
@@ -93,8 +100,9 @@
     
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.js"></script>
-  <script src="{{ url_for('static', filename='js/line5.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/line.js') }}"></script>
 
+</div>
 </body>
 
 </html>

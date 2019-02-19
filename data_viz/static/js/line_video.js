@@ -80,7 +80,7 @@ function drawInput(){
       drawLine(chartGroup2, chosenChannel2, chosenSeries)
     })
 
-    d3.select('#Bluewhisper_2').attr('selected', 'selected')
+    d3.select('#ASMRGlow_2').attr('selected', 'selected')
 
     var series_options = d3.keys(asmr_data[0]['time_series'])
     console.log('seriesOptions')
@@ -158,6 +158,9 @@ function drawLine(chartGroup, chosenChannel, chosenSeries) {
         data.time_series.total_views.forEach(day => {
             day['total_views'] = +day['total_views']
         }) 
+        data.time_series.pubs.forEach(pub => {
+          pub = parseTime(pub)
+      }) 
     })
 
     var channel = asmr_data.filter(datum => datum.channel_name == chosenChannel)[0]
@@ -184,6 +187,12 @@ function drawLine(chartGroup, chosenChannel, chosenSeries) {
     .attr("d", drawLine(channel.time_series[chosenSeries]))
     .classed("line", true);
 
+    chartGroup.selectAll("circle").data(channel).enter()
+      .append("circle")
+      .attr("r", 50)
+      .attr("cx", d => xTimeScale(d['time_series']['pubs']))
+      .attr("cy", d => yLinearScale(d[chosenSeries]))
+
     chartGroup.append("g")
     .classed("axis", true)
     .attr('id', 'yaxis')
@@ -200,7 +209,7 @@ function drawLine(chartGroup, chosenChannel, chosenSeries) {
 
 var chosenSeries = 'average_views'
 var chosenChannel1 = 'Angelica'
-var chosenChannel2 = 'Bluewhisper'
+var chosenChannel2 = 'ASMRGlow'
 
 drawLine(chartGroup1, chosenChannel1, chosenSeries)
 drawLine(chartGroup2, chosenChannel2, chosenSeries)

@@ -46,8 +46,30 @@ def asmr_channels():
         datum['channel_age'] = round((dt.now() - datum['date_created']).total_seconds()/3600/24)
         datum['days_btw_uploads'] = round(datum['channel_age']/datum['uploads'], 2)
         datum['avg_100k_views_video'] = round(datum['views']/datum['uploads']/100000, 2)
-        datum['avg_100k_views_subscriber'] = round(datum['views']/datum['subs']/100000, 2)
+        datum['avg_100k_views_subscriber'] = round(datum['views']/datum['subs_(100k)']/100000, 2)
         datum['date_created'] = datum['date_created'].isoformat()
+        # durList = []
+        # commList = []
+        # likeList = []
+        # dislikeList = []
+        # pubList = []
+        # for video in datum['videos']:
+        #     video['published_at'] = ' ' + video['published_at'][0:10]
+        #     pubList.append(video['published_at'])
+        #     durList.append(float(video['duration']))
+        #     commList.append(float(video['comment_count']))
+        #     likeList.append(float(video['like_count']))
+        #     dislikeList.append(float(video['dislike_count']))
+        # datum['time_series']['pubs'] = pubList
+        # datum['total_duration'] = sum(durList)
+        # datum['total_comments'] = sum(commList)
+        # datum['total_likes'] = sum(likeList)
+        # datum['total_dislikes'] = sum(dislikeList)
+        # datum['average_duration'] = datum['total_duration'] / datum['uploads']
+        # datum['average_comments'] = datum['total_comments'] / datum['uploads']
+        # datum['average_likes'] = datum['total_likes'] / datum['uploads']
+        # datum['average_dislikes'] = datum['total_dislikes'] / datum['uploads']
+        # datum['like_ratio'] = datum['total_likes'] / datum['total_dislikes']
 
     return jsonify(asmr_data)
 
