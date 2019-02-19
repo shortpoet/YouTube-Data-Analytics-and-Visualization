@@ -126,7 +126,7 @@ function drawLine(chartGroup, chosenChannel, chosenSeries) {
             day['dates'] = parseTime(day['dates'])
         }) 
         data.time_series.average_views.forEach(day => {
-            day['average_views'] = +day['average_views']
+            day['average_views'] = Math.abs(+day['average_views'])
         }) 
         data.time_series.daily_subs.forEach(day => {
             day['dates'] = parseTime(day['dates'])
