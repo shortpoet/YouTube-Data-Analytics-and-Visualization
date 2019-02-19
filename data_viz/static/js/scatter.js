@@ -245,23 +245,23 @@ d3.json('asmr_channels').then(function(asmrData) {
   var uploadFrequencyLabel = xLabelsGroup.append("text")
     .attr("x", 0)
     .attr("y", 80)
-    .attr("value", "upload_frequency") // value to grab for event listener
+    .attr("value", "days_btw_uploads") // value to grab for event listener
     .classed("inactive", true)
     .text("Days Between Uploads");
 
     var avgVidViewsLabel = xLabelsGroup.append("text")
     .attr("x", 0)
     .attr("y", 100)
-    .attr("value", "avg_views_video") // value to grab for event listener
+    .attr("value", "avg_100k_views_video") // value to grab for event listener
     .classed("inactive", true)
-    .text("Average Views / Video");
+    .text("Average 100k Views / Video");
     
     var avgVidSubsLabel = xLabelsGroup.append("text")
     .attr("x", 0)
     .attr("y", 120)
-    .attr("value", "avg_views_subscriber") // value to grab for event listener
+    .attr("value", "avg_100k_views_subscriber") // value to grab for event listener
     .classed("inactive", true)
-    .text("Average Views / Subscribers");
+    .text("Average 100k Views / Subscribers");
 
   // updateToolTip function above csv import
   var circlesGroup = updateToolTip(chosenXAxis, chosenYAxis, circlesGroup);
@@ -375,7 +375,7 @@ d3.json('asmr_channels').then(function(asmrData) {
             .classed("active", false)
             .classed("inactive", true);
         }
-        else if (chosenXAxis === "upload_frequency") {
+        else if (chosenXAxis === "days_btw_uploads") {
           uploadsLabel
             .classed("active", false)
             .classed("inactive", true);
@@ -392,7 +392,7 @@ d3.json('asmr_channels').then(function(asmrData) {
             .classed("active", false)
             .classed("inactive", true);
         }
-        else if (chosenXAxis === "avg_views_video") {
+        else if (chosenXAxis === "avg_100k_views_video") {
           uploadsLabel
             .classed("active", false)
             .classed("inactive", true);
@@ -409,7 +409,7 @@ d3.json('asmr_channels').then(function(asmrData) {
             .classed("active", false)
             .classed("inactive", true);
         }
-        else if (chosenXAxis === "avg_views_subs") {
+        else if (chosenXAxis === "avg_100k_views_subscriber") {
           uploadsLabel
             .classed("active", false)
             .classed("inactive", true);
