@@ -157,7 +157,7 @@ d3.json('asmr_channels').then(function(asmrData) {
       data.upload_frequency = +data.upload_frequency
       data.channel_age = +data.channel_age
   })
-  console.log(asmrData)
+  // console.log(asmrData)
     
     // xLinearScale function above csv import
   var xLinearScale = xScale(asmrData, chosenXAxis);
@@ -280,7 +280,7 @@ d3.json('asmr_channels').then(function(asmrData) {
 
         // functions here found above csv import
         // updates x scale for new data
-        yLinearScale = xScale(asmrData, chosenYAxis);
+        yLinearScale = yScale(asmrData, chosenYAxis);
 
         // updates x axis with transition
         yAxis = renderYAxes(yLinearScale, yAxis);
