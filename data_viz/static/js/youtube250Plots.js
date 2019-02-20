@@ -21,7 +21,8 @@ var peopleLayout = {
   hovermode: "closest",
   title: "Total Views vs Uploads",
   xaxis: { title: "Uploads" },
-  yaxis: { title: "Total Video Views" }
+  yaxis: { title: "Total Video Views" },
+  showlegend: false
 };
 
 Plotly.plot("peoplePlot1", peopleData, peopleLayout);

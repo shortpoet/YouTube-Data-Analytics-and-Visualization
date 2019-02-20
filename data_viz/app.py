@@ -81,6 +81,10 @@ def table():
 def youtube250():
     return render_template("Top250Index.html")
 
+@app.route("/entertainmentGeo")
+def entertainmentGeo():
+    return render_template("entertainmentGeo.html")
+
 @app.route("/line")
 def line():
     return render_template("line.html")
