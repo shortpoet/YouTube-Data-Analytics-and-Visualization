@@ -17,27 +17,30 @@
 
 
 
-var bubbleData = [
+var peopleData = [
   {
-    x: people250.map(x => x['Subscribers']),
+    x: people250.map(x => x['Total Uploads']),
     y: people250.map(x => x['Total Video Views']),
-    text: people250.map(x => x['Username']),
+    text: people250.map(x => "Channel: " + x['Username'] + "<br>" +
+    "Subs: " + (x['Subscribers'] / 1000000) + "M"),
     mode: "markers",
     marker: {
-      size: 10,
-      // color: otu_ids,
+      size: people250.map(x => x['Subscribers'] / 750000 ),
+      color: people250.map(x => x['Subscribers']),
       colorscale: "Earth"
     }
   }
 ];
 
-var bubbleLayout = {
-  margin: { t: 0 },
+var peopleLayout = {
+  margin: { t: 50 },
   hovermode: "closest",
-  xaxis: { title: "Subs vs Views" }
+  title: "Total Views vs Uploads",
+  xaxis: { title: "Uploads" },
+  yaxis: { title: "Total Video Views" }
 };
 
-Plotly.plot("peoplePlot1", bubbleData, bubbleLayout);
+Plotly.plot("peoplePlot1", peopleData, peopleLayout);
 
 
 // -------------------------------------------------
@@ -47,17 +50,17 @@ Plotly.plot("peoplePlot1", bubbleData, bubbleLayout);
 
 
 
-var peopleTrace2 = {
-  x: people250.map(x => x['Subscribers']),
-  y: people250.map(x => x['Total Video Views']),
-  mode: "markers",
-  type: "scatter",
-  name: "Subscribers vs Total Views",
-  marker: {
-    color: "#2077b4",
-    symbol: "hexagram"
-  }
-};
+// var peopleTrace2 = {
+//   x: people250.map(x => x['Subscribers']),
+//   y: people250.map(x => x['Total Video Views']),
+//   mode: "markers",
+//   type: "scatter",
+//   name: "Subscribers vs Total Views",
+//   marker: {
+//     color: "#2077b4",
+//     symbol: "hexagram"
+//   }
+// };
 
 var entertainmentTrace1 = {
   x: entertainment250.map(x => x['Total Uploads']),
@@ -101,18 +104,18 @@ var entertainmentTrace2 = {
 
 
 // Create the data array for the People: Subs vs Views plot
-var peopleData2 = [peopleTrace2];
+// var peopleData2 = [peopleTrace2];
 
 
-// Define the plot layout
-var peopleLayout2 = {
-  title: "Total Views vs Uploads",
-  xaxis: { title: "Subscribers" },
-  yaxis: { title: "Total Video Views" }
-};
+// // Define the plot layout
+// var peopleLayout2 = {
+//   title: "Total Views vs Uploads",
+//   xaxis: { title: "Subscribers" },
+//   yaxis: { title: "Total Video Views" }
+// };
 
-// Plot the chart to a div tag with id "peoplePlot2"
-Plotly.newPlot("peoplePlot2", peopleData2, peopleLayout2);
+// // Plot the chart to a div tag with id "peoplePlot2"
+// Plotly.newPlot("peoplePlot2", peopleData2, peopleLayout2);
 
 // -------------------------------------------------------------------------------------------------------------------
 
