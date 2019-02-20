@@ -19,66 +19,66 @@ var link = "https://raw.githubusercontent.com/johan/world.geo.json/master/countr
 // Function that will determine the color of a neighborhood based on the borough it belongs to
 function chooseColor(country) {
   switch (country) {
-  case "Argentina":
-    return "#bddd1c";
+  case "Algeria":
+    return "#98ee00";
   case "Australia":
     return "#bddd1c";
-  case "Belgium":
-    return "#98ee00";
   case "Brazil":
     return "#d86615";
   case "Canada":
-    return "#ead116";
-  case "Chile":
+    return "#bddd1c";
+  case "China":
     return "#98ee00";
   case "Columbia":
-    return "#bddd1c";
+    return "#ead116";
   case "Egypt":
     return "#98ee00";
-  case "France":
+  case "Germany":
     return "#98ee00";
   case "United Kingdom":
-    return "#ea9917";
-  case "Hungary":
-    return "#98ee00";
+    return "#ead116";
   case "India":
     return "#ea9917";
   case "Indonesia":
-    return "#bddd1c";
+    return "#98ee00";
   case "Italy":
     return "#98ee00";
   case "Japan":
     return "#bddd1c";
+  case "Kazakhstan":
+    return "#98ee00";
   case "South Korea":
     return "#bddd1c";
+  case "Kuwait":
+    return "#98ee00";
   case "Mexico":
-    return "#ead116";
-  case "Netherlands":
+    return "#ea9917";
+  case "Morocco":
     return "#98ee00";
-  case "Pakistan":
-    return "#98ee00";
-  case "Peru":
-    return "#bddd1c";
   case "Philippines":
     return "#bddd1c";
   case "Russia":
-    return "#ead116";
+    return "#ea9917";
   case "Saudi Arabia":
-    return "#bddd1c";
-  case "Spain":
     return "#ead116";
-  case "Thailand":
-    return "#ead116";
-  case "Turkey":
+  case "Singapore":
     return "#98ee00";
+  case "Spain":
+    return "#bddd1c";
+  case "Sweden":
+    return "#98ee00";
+  case "Switzerland":
+    return "#98ee00";
+  case "Thailand":
+    return "#bddd1c";
+  case "Turkey":
+    return "#bddd1c";
   case "Ukraine":
     return "#bddd1c";
   case "United Arab Emirates":
     return "#bddd1c";
   case "United States of America":
     return "#d11919";
-  case "Venezuela":
-    return "#98ee00";
   case "Vietnam":
     return "#bddd1c";
   default:

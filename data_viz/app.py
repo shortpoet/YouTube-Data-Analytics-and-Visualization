@@ -85,6 +85,10 @@ def youtube250():
 def entertainmentGeo():
     return render_template("entertainmentGeo.html")
 
+@app.route("/peopleGeo")
+def peopleGeo():
+    return render_template("peopleGeo.html")
+
 @app.route("/line")
 def line():
     return render_template("line.html")
