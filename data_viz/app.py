@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 
 # Use flask_pymongo to set up mongo connection
-app.config["MONGO_URI"] = "mongodb://localhost:27017/asmr_youtube"
+app.config["MONGO_URI"] = "mongodb://localhost:27017/asmr_youtube_test"
 mongo = PyMongo(app)
 
 # Or set inline
@@ -28,7 +28,7 @@ def asmr_channels():
     # for i in mongo.db.social_blade_asmr_data.find():
     #     asmr_data = json.dumps(i, indent=4, default=json_util.default)
 
-    sb_db_response = mongo.db.asmr_data.find_one({}, {'_id': False})
+    sb_db_response = mongo.db.asmr_data_test.find_one({}, {'_id': False})
     asmr_data = []
     for channel, data in sb_db_response.items():
         asmr_data.append(data)
