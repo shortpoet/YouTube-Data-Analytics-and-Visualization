@@ -21,9 +21,14 @@ d3.json('asmr_channels', function(error, asmrAnalysis) {
   var channelYEARcreated = channelAgeinYEARS.map(function(x) {return 2019-x});
   console.log(channelYEARcreated);
 
+  var channelYEARcreatedv2 = channelYEARcreated.map(function(each_element){
+    return Number(each_element.toFixed(0));
+  });
+  console.log(channelYEARcreatedv2);
+
   var subx = ["Subscribers_x"]
 
-  var YEARcreated = subx.concat(channelYEARcreated)
+  var YEARcreated = subx.concat(channelYEARcreatedv2)
   console.log(YEARcreated);
 
   var subscribers = asmrAnalysis.map(data => data.subs);
@@ -45,7 +50,7 @@ d3.json('asmr_channels', function(error, asmrAnalysis) {
           enabled: true
         }
       },
-      r: 10
+      r: 8
     },
     size: {
       height: 400,
@@ -62,11 +67,25 @@ d3.json('asmr_channels', function(error, asmrAnalysis) {
         ],
         type: 'scatter'
     },
+    //tooltip: {
+      //format: {
+          //title: function (d) { return 'Data ' + d; },
+          //value: function (value, ratio, id) {
+          //    var format = id === 'data1' ? d3.format(',') : d3.format('$');
+          //    return format(value);
+          //},
+          //name: function (name) {return name;}
+      //},
+    //},    
     axis: {
         x: {
+            padding: {
+              left: 1.5,
+              right: 1.5,
+            },
             label: 'Year Youtube Channel Created',
             tick: {
-                values: [2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012, 2011, 2010, 2009, 2008, 2007, 2006],
+                values: [2018, 2017, 2016, 2015, 2014, 2013, 2012, 2011, 2010, 2009],
                 fit: true
             }
         },
@@ -196,7 +215,7 @@ d3.json('asmr_channels', function(error, asmrAnalysis) {
   var chart = c3.generate({
     size: {
       height: 1200,
-      width: 1000
+    //  width: 1000
     },
     bindto: '#top10',
     data: {
