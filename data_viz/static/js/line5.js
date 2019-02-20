@@ -82,6 +82,9 @@ function drawInput(){
 
     d3.select('#ASMR_PPOMO_2').attr('selected', 'selected')
 
+    var scaleSubmit2 = dropdownDiv2.append('button').attr('type', 'submit').attr('value', 'rescale2').attr('form', 'lineChannelSelect2')
+      .text('rescale2')
+
     var series_options = d3.keys(asmr_data[0]['time_series'])
     var radioDiv = d3.select('.seriesSelect').append('div')
       .classed('form-check form-check-inline', true)
