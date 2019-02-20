@@ -6,11 +6,17 @@
   http://plnkr.co/edit/y3wyCEiSfHgFwTF4t45i?p=preview
 */
 
-/*
-d3.json("/resources/sb_asmr_data_test.json", function(error, asmrAnalysis) {
+
+d3.json('asmr_channels', function(error, asmrAnalysis) {
   console.log(asmrAnalysis);
+  asmrAnalysis.forEach(channel => {
+    
+  })
+  var male = asmrAnalysis.filter(channel=>channel.gender === "M")
+  console.log('male')
+  console.log(male.length)
 });
-*/
+
 var jsonData = [{"channel":"Angelica","age":null,"uploads":284,"subs":164223,"total_views":28180506,"channel_creation_year":2015,"gender":"F","country":"US","category":"People","twitter":true,"instagram":true,"twitch":false,"facebook":false,"type":"channel"},
                 {"channel":"ASMRctica","age":null,"uploads":76,"subs":27066,"total_views":4070797,"channel_creation_year":2015,"gender":"M","country":"SE","category":"Entertainment","twitter":true,"instagram":true,"twitch":false,"facebook":false,"type":"channel"},
                 {"channel":"ASMRDarling","age":22.0,"uploads":153,"subs":2250614,"total_views":417889554,"channel_creation_year":2014,"gender":"F","country":"US","category":"Entertainment","twitter":true,"instagram":true,"twitch":false,"facebook":true,"type":"channel"},
@@ -71,9 +77,9 @@ var chart = c3.generate({
           ['Female', 36]
       ],
       type : 'donut',
-      onclick: function (d, i) { console.log("onclick", d, i); },
-      onmouseover: function (d, i) { console.log("onmouseover", d, i); },
-      onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+      // onclick: function (d, i) { console.log("onclick", d, i); },
+      // onmouseover: function (d, i) { console.log("onmouseover", d, i); },
+      // onmouseout: function (d, i) { console.log("onmouseout", d, i); }
   },
   donut: {
       title: "Gender of ASMR Youtuber"

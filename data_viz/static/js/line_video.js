@@ -117,7 +117,7 @@ drawInput()
 
 function drawLine(chartGroup, chosenChannel, chosenSeries) {
 	d3.json('asmr_channels').then(function(asmr_data) {
-    console.log(asmr_data)
+    console.log(asmr_data[4].time_series.pubs)
 
   // var chosenChannel1 = d3.select('#lineChannelSelect1').attr('value')
   // var chosenChannel2 = d3.select('#lineChannelSelect2').attr('value')
@@ -170,6 +170,12 @@ function drawLine(chartGroup, chosenChannel, chosenSeries) {
     .range([0, chartWidth])
     .domain(d3.extent(channel.time_series[chosenSeries], data => data.dates))
     
+    var xTimeScale2 = d3.scaleTime()
+    .range([0, chartWidth])
+    .domain(d3.extent(channel.time_series['pubs'], data => data.pub))
+
+
+    
     var yLinearScale = d3.scaleLinear()
     .range([chartHeight, 0])
     .domain([0, d3.max(channel.time_series[chosenSeries], data => data[chosenSeries])])
@@ -190,7 +196,7 @@ function drawLine(chartGroup, chosenChannel, chosenSeries) {
     chartGroup.selectAll("circle").data(channel).enter()
       .append("circle")
       .attr("r", 50)
-      .attr("cx", d => xTimeScale(d['time_series']['pubs']))
+      .attr("cx", d => xTimeScale2(d.time_series.pubs))
       .attr("cy", d => yLinearScale(d[chosenSeries]))
 
     chartGroup.append("g")
@@ -209,7 +215,7 @@ function drawLine(chartGroup, chosenChannel, chosenSeries) {
 
 var chosenSeries = 'average_views'
 var chosenChannel1 = 'Angelica'
-var chosenChannel2 = 'ASMRGlow'
+var chosenChannel2 = 'ASMR Glow'
 
 drawLine(chartGroup1, chosenChannel1, chosenSeries)
 drawLine(chartGroup2, chosenChannel2, chosenSeries)

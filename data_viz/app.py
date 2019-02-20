@@ -25,8 +25,6 @@ def home():
 
 @app.route("/asmr_channels")
 def asmr_channels():
-    # for i in mongo.db.social_blade_asmr_data.find():
-    #     asmr_data = json.dumps(i, indent=4, default=json_util.default)
 
     sb_db_response = mongo.db.asmr_data.find_one({}, {'_id': False})
     asmr_data = []
@@ -54,8 +52,10 @@ def asmr_channels():
         # dislikeList = []
         # pubList = []
         # for video in datum['videos']:
+            
         #     video['published_at'] = ' ' + video['published_at'][0:10]
-        #     pubList.append(video['published_at'])
+        #     this_dict = {"pub": video['published_at']}
+        #     pubList.append(this_dict)
         #     durList.append(float(video['duration']))
         #     commList.append(float(video['comment_count']))
         #     likeList.append(float(video['like_count']))
@@ -88,6 +88,10 @@ def line():
 @app.route("/bar")
 def bar():
     return render_template("bar.html")
+
+@app.route("/c3")
+def c3():
+    return render_template("c3.html")  
 
 # @app.route("/status_spirit.html#recient")
 # def redir1():
