@@ -1,84 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  
+
   <meta charset="utf-8">
   <title>YouTube Top 250</title>
+  
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-  
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-  
-  
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+    integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
     crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-    crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-    crossorigin="anonymous">
+
+
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
 
-  
+
 </head>
+
 <body>
+
+  <!-- Navigation bar -->
+  <nav class="navbar navbar-default">
     <div class="container">
-        <div class="row">
-          <div class="col-md-12 jumbotron text-center">
-            <h1>People and Entertaint Top 250 Channels</h1>
-            <p>Use the interactive charts below to explore the dataset</p>
-          </div>
-        </div>
+      <div class="navbar-header">
+        <a class="navbar-brand logo" href="index.html">
+          <span class="nav-color-light"></span></a>
+      </div>
+
+      <div class="nav navbar-nav navbar-right">
+        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">Plots<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="">Scatter</a></li>
+            <li><a href="bar">Bar Graph</a></li>
+            <li><a href="line">Line Graph</a></li>
+            <li><a href="table">Table</a></li>
+            <li><a href="youtube250">Top 250</a></li>
+            <li><a href="c3">c3 Summary</a></li>
+          </ul>
+        </li>
+      </div>
+    </div>
+  </nav>
+
+
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 jumbotron text-center">
+        <h1>People and Entertaint Top 250 Channels</h1>
+        <p>Use the interactive charts below to explore the dataset</p>
+      </div>
+    </div>
 
 
 
 
 
-        
-    <nav class="navbar navbar-default">
-        <div class="container">
-            <div class="navbar-header">
-                <a class="navbar-brand logo" href="index.html">
-                    <span class="nav-color-light"></span></a>
-            </div>
-    
-            <div class="nav navbar-nav navbar-right">
-                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">Plots<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="">Scatter</a></li>
-                        <li><a href="bar">Bar Graph</a></li>
-                        <li><a href="line">Line Graph</a></li>
-                        <li><a href="table">Table</a></li>
-                        <li><a href="youtube250">Top 250</a></li>
-                        <li><a href="c3">c3 Summary</a></li>
-                    </ul>
-                </li>
-            </div>
-        </div>
-    </nav>
 
 
-    <h1>People Category Top 250</h1>
+    <h1>People Top 250</h1>
     <hr>
     <div id="peoplePlot1"></div>
     <br>
     <div id="peoplePlot2"></div>
     <br>
-    <h1>Entertainment Category Top 250</h1>
+    <h1>Entertainment Top 250</h1>
     <hr>
     <div id="entertainmentPlot1"></div>
     <br>
     <div id="entertainmentPlot2"></div>
 
-  <!-- People Top 250 Data -->
-  <script src="{{ url_for('static', filename='data/peopleData.js') }}"></script>
+    <!-- People Top 250 Data -->
+    <script src="{{ url_for('static', filename='data/peopleData.js') }}"></script>
 
-  <!-- Entertainmainment Top 250 Data -->
-  <script src="{{ url_for('static', filename='data/entertainmentData.js') }}"></script>
+    <!-- Entertainmainment Top 250 Data -->
+    <script src="{{ url_for('static', filename='data/entertainmentData.js') }}"></script>
 
-  <script src="{{ url_for('static', filename='js/youtube250Plots.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/youtube250Plots.js') }}"></script>
 </body>
+
 </html>
