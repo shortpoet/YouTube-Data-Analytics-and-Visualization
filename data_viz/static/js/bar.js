@@ -3,7 +3,7 @@ var barSvgWidth = 960 * 1.25;
 var barSvgHeight = 960 * 1.25;
 
 var margin = {
-  top: 20,
+  top: 60,
   right: 40,
   bottom: 80,
   left: 150
@@ -47,8 +47,8 @@ d3.json('asmr_channels').then(function(asmrData) {
                                 .text(d => d)
                                 .attr('value', d => d);
 
-  var chosenSelect = headers[0]
-  
+  var sel = document.getElementById('barChartSelect')
+  var chosenSelect = sel.options[sel.selectedIndex].value
 
 	var xLinearScaleRect = d3.scaleLinear()
     .domain([0, d3.max(asmrData, d => +d[chosenSelect])])
@@ -82,7 +82,7 @@ d3.json('asmr_channels').then(function(asmrData) {
 
   var xAxisLabelRect = xAxisGroupRect.append("text")
     .attr("x", 0)
-    .attr("y", -(barHeight + 25))
+    .attr("y", -(barHeight + 50))
     .attr("value", `${chosenSelect}`) // value to grab for event listener
     .classed("barXLabel", true)
     .text(`${chosenSelect}`);
@@ -261,7 +261,13 @@ d3.json('asmr_channels').then(function(asmrData) {
               .attr('width', d => xLinearScaleRect(d[chosenSelect]))
               .attr('height', yBandScaleRect.bandwidth())
               .style('fill', d => (d[chosenSelect] < +average(asmrData, chosenSelect)) ? colors(d[chosenSelect]) :  colors2(d[chosenSelect]))
-
+          
+          xAxisGroupRect.selectAll('text')
+            .transition()
+            .duration(1000)
+            .attr("value", `${chosenSelect}`) // value to grab for event listener
+            .text(`${chosenSelect}`);
+        
                     
           rectLabelsGroup.selectAll("text")
               .data(asmrData)
