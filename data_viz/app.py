@@ -89,6 +89,10 @@ def entertainmentGeo():
 def peopleGeo():
     return render_template("peopleGeo.html")
 
+@app.route("/asmrGeo")
+def asmrGeo():
+    return render_template("asmrGeo.html")
+
 @app.route("/line")
 def line():
     return render_template("line.html")

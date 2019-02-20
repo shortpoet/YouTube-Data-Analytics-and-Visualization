@@ -54,6 +54,7 @@
               <li><a href="youtube250">Top 250</a></li>
               <li><a href="entertainmentGeo">Entertainment Geojson</a></li>
               <li><a href="peopleGeo">People Geojson</a></li>
+              <li><a href="asmrGeo">ASMR Geojson</a></li>
               <li><a href="table">Table</a></li>
               <li><a href="bar">Bar</a></li>
               <li><a href="line">Line</a></li>
@@ -80,18 +81,18 @@
 
 
 
-
-    <h1>People Top 250</h1>
-    <hr>
-    <div id="peoplePlot1"></div>
-    <br>
-    <div id="peoplePlot2"></div>
-    <br>
-    <h1>Entertainment Top 250</h1>
-    <hr>
-    <div id="entertainmentPlot1"></div>
-    <br>
-    <div id="entertainmentPlot2"></div>
+    <div class="row">
+        <div class="col-md-12">
+          <h1>People Top 250</h1>
+          <hr>
+          <div id="peoplePlot1"></div>
+          <br>
+          <h1>Entertainment Top 250</h1>
+          <hr>
+          <div id="entertainmentPlot1"></div>
+          <br>
+        </div>
+    </div>
 
     <!-- People Top 250 Data -->
     <script src="{{ url_for('static', filename='data/peopleData.js') }}"></script>

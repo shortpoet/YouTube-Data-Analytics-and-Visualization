@@ -19,68 +19,36 @@ var link = "https://raw.githubusercontent.com/johan/world.geo.json/master/countr
 // Function that will determine the color of a neighborhood based on the borough it belongs to
 function chooseColor(country) {
   switch (country) {
-  case "Argentina":
-    return "#bddd1c";
+  
   case "Australia":
-    return "#bddd1c";
+    return "#98ee00";
   case "Belgium":
-    return "#98ee00";
-  case "Brazil":
-    return "#d86615";
-  case "Canada":
-    return "#ead116";
-  case "Chile":
-    return "#98ee00";
-  case "Columbia":
     return "#bddd1c";
-  case "Egypt":
+  case "Canada":
+    return "#bddd1c";
+  case "China":
     return "#98ee00";
-  case "France":
+  case "Costa Rica":
+    return "#98ee00";
+  case "Denmark":
     return "#98ee00";
   case "United Kingdom":
-    return "#ea9917";
-  case "Hungary":
+    return "#d86615";
+  case "Israel":
     return "#98ee00";
-  case "India":
-    return "#ea9917";
-  case "Indonesia":
-    return "#bddd1c";
-  case "Italy":
-    return "#98ee00";
-  case "Japan":
-    return "#bddd1c";
   case "South Korea":
-    return "#bddd1c";
-  case "Mexico":
     return "#ead116";
-  case "Netherlands":
+  case "Poland":
     return "#98ee00";
-  case "Pakistan":
-    return "#98ee00";
-  case "Peru":
-    return "#bddd1c";
-  case "Philippines":
-    return "#bddd1c";
   case "Russia":
-    return "#ead116";
-  case "Saudi Arabia":
-    return "#bddd1c";
+    return "#ea9917";
   case "Spain":
-    return "#ead116";
-  case "Thailand":
-    return "#ead116";
-  case "Turkey":
     return "#98ee00";
-  case "Ukraine":
-    return "#bddd1c";
-  case "United Arab Emirates":
-    return "#bddd1c";
+  case "Sweden":
+    return "#98ee00";
   case "United States of America":
     return "#d11919";
-  case "Venezuela":
-    return "#98ee00";
-  case "Vietnam":
-    return "#bddd1c";
+  
   default:
     return "black";
   }
@@ -135,7 +103,7 @@ d3.json(link, function(data) {
   legend.onAdd = function () {
 
     var div = L.DomUtil.create('div', 'info legend'),
-    channels = [0, 1, 5, 15, 25, 50],
+    channels = [0, 1, 2, 3, 5, 15],
     labels = ["#98ee00", "#bddd1c", "#ead116", "#ea9917", "#d86615", "#d11919"];
 
     // Add title to the legend box
