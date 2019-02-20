@@ -89,6 +89,10 @@ def line():
 def bar():
     return render_template("bar.html")
 
+@app.route("/c3")
+def c3():
+    return render_template("c3.html")  
+
 # @app.route("/status_spirit.html#recient")
 # def redir1():
 #     return redirect(url_for("https://mars.nasa.gov/mer/mission/status_spirit.html#recient"))

@@ -5,17 +5,18 @@
   <title>Project 2 - YouTube</title>
 
   <!-- Load c3.css -->
-  <link href="c3-0.6.12/c3.css" rel="stylesheet">
+  <script src="{{ url_for('static', filename='js/c3-0.6.12/c3.css') }}"></script>
 
   <!-- Load d3.js and c3.js -->
   <script src="https://d3js.org/d3.v5.min.js" charset="utf-8"></script>
-  <script src="c3-0.6.12/c3.min.js"></script>
+  <script src="{{ url_for('static', filename='js/c3-0.6.12/c3.min.js') }}"></script>
 
   <!-- D3 -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.5.0/d3.min.js"></script>
 
   <!-- CSS -->
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="{{ url_for('static', filename='css/c3.css') }}"></script>
+
 </head>
 
 <body>
@@ -34,7 +35,10 @@
   <!--<script type="text/javascript" src="config.js"></script>-->
 
   <!-- Our JavaScript -->
-  <script type="text/javascript" src="logic.js"></script>
+  <script src="{{ url_for('static', filename='js/logic.js') }}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.js"></script>
+
 
 </body>
 
