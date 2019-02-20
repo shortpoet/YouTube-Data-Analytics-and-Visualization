@@ -194,7 +194,7 @@ d3.json('asmr_channels').then(function(asmrData) {
   var alphaSortOrder = false
   d3.select('#alphabetize').on('click', function(d) {
     alphaSortOrder = !alphaSortOrder
-    asmrData = asmrData.sort((a,b) => (alphaSortOrder) ? d3.descending(a['channel_name'], b['channel_name']) : d3.ascending(a['channel_name'], b['channel_name']))
+    asmrData = asmrData.sort((a,b) => (alphaSortOrder) ? d3.descending(a['channel_name'].toLowerCase().replace(/\s/g, ''), b['channel_name'].toLowerCase().replace(/\s/g, '')) : d3.ascending(a['channel_name'].toLowerCase().replace(/\s/g, ''), b['channel_name'].toLowerCase().replace(/\s/g, '')))
     var button = d3.select(this).select('i')
     if (alphaSortOrder) {
       button.attr('class', 'fas fa-sort-alpha-down')

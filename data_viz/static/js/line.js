@@ -111,7 +111,7 @@ function drawInput(){
         drawLine(chartGroup1, chosenChannel1, chosenSeries)
         drawLine(chartGroup2, chosenChannel2, chosenSeries)
       })
-    d3.select('#average_views_radio').attr('checked', 'checked')
+    d3.select('#total_subs_radio').attr('checked', 'checked')
   })
 }
 
@@ -199,7 +199,7 @@ function drawLine(chartGroup, chosenChannel, chosenSeries) {
   })
 }
 
-var chosenSeries = 'average_views'
+var chosenSeries = 'total_subs'
 var chosenChannel1 = 'ASMR Darling'
 var chosenChannel2 = 'ASMR PPOMO'
 
