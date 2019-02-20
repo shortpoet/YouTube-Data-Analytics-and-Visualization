@@ -38,15 +38,16 @@ var parseTime = d3.timeParse(" %Y-%m-%d");
 function drawInput(){
 	d3.json('asmr_channels').then(function(asmr_data) {
     console.log(asmr_data)
+    asmr_data.sort((a,b) => d3.descending(parseFloat(a['subs']), parseFloat(b['subs'])))
     var dropdownDiv1 = d3.select('.lineSelect1').append('div').classed('form-group', true).append('label')
       .attr('for', 'lineChannelSelect1')
-      .text('Select Channel');
+      .text('Listed by Subscribers Descending');
     var dropdown1 = dropdownDiv1.append('select').classed('form-control', true).attr('id', 'lineChannelSelect1');
     var dropdownOptions1 = dropdown1.selectAll('option').data(asmr_data).enter()
       .append('option')
       .text(d => d.channel_name)
       .attr('value', d => d.channel_name)
-      .attr('id', d => d.channel_name + '_1')
+      .attr('id', d => d.channel_name.replace(/\s/g, '_') + '_1')
 
     dropdownDiv1.on('change', function(){
       var sel1 = document.getElementById('lineChannelSelect1')
@@ -57,17 +58,17 @@ function drawInput(){
       drawLine(chartGroup1, chosenChannel1, chosenSeries)
       })
     
-    d3.select('#Angelica_1').attr('selected', 'selected')
+    d3.select('#ASMR_Darling_1').attr('selected', 'selected')
 
     var dropdownDiv2 = d3.select('.lineSelect2').append('div').classed('form-group', true).append('label')
       .attr('for', 'lineChannelSelect2')
-      .text('Select Channel');
+      .text('Listed by Subscribers Descending');
     var dropdown2 = dropdownDiv2.append('select').classed('form-control', true).attr('id', 'lineChannelSelect2');
     var dropdownOptions2 = dropdown2.selectAll('option').data(asmr_data).enter()
       .append('option')
       .text(d => d.channel_name)
       .attr('value', d => d.channel_name)
-      .attr('id', d => d.channel_name + '_2')
+      .attr('id', d => d.channel_name.replace(/\s/g, '_') + '_2')
       
     dropdownDiv2.on('change', function(){
       var sel2 = document.getElementById('lineChannelSelect2')
@@ -79,7 +80,7 @@ function drawInput(){
       drawLine(chartGroup2, chosenChannel2, chosenSeries)
     })
 
-    d3.select('#Bluewhisper_2').attr('selected', 'selected')
+    d3.select('#ASMR_PPOMO_2').attr('selected', 'selected')
 
     var series_options = d3.keys(asmr_data[0]['time_series'])
     var radioDiv = d3.select('.seriesSelect').append('div')
@@ -199,8 +200,8 @@ function drawLine(chartGroup, chosenChannel, chosenSeries) {
 }
 
 var chosenSeries = 'average_views'
-var chosenChannel1 = 'Angelica'
-var chosenChannel2 = 'Bluewhisper'
+var chosenChannel1 = 'ASMR Darling'
+var chosenChannel2 = 'ASMR PPOMO'
 
 drawLine(chartGroup1, chosenChannel1, chosenSeries)
 drawLine(chartGroup2, chosenChannel2, chosenSeries)

@@ -25,8 +25,8 @@ var chartGroup = scatterSvg.append("g")
   .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
 // Initial Params
-var chosenXAxis = "subs";
-var chosenYAxis = "uploads";
+var chosenYAxis = "subs";
+var chosenXAxis = "uploads";
 
 // function used for updating x-scale var upon click on axis label
 function xScale(asmrData, chosenXAxis) {
@@ -115,11 +115,11 @@ function yScale(asmrData, chosenYAxis) {
     else if (chosenXAxis === "upload_frequency") {
         var xlabel = "Days Between Uploads";
       }
-    else if (chosenXAxis === "avg_views_video") {
-      var xlabel = "Average Views / Video";
+    else if (chosenXAxis === "avg_100k_views_video") {
+      var xlabel = "Average 100k Views / Video";
     }
-    else if (chosenXAxis === "avg_views_subscriber") {
-      var xlabel = "Average Views / Subscriber";
+    else if (chosenXAxis === "avg_100k_views_subscriber") {
+      var xlabel = "Average 100k Views / Subscriber";
     }
   
     var toolTip = d3.tip()
