@@ -224,6 +224,9 @@ d3.json('asmr_channels', function(error, asmrAnalysis) {
             left: 0,
             right: 0
           },
+          tick: {
+            multiline: false
+          },
           type: 'category',
           categories: channelNames
         }
