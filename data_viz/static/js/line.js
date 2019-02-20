@@ -60,6 +60,23 @@ function drawInput(){
     
     d3.select('#ASMR_Darling_1').attr('selected', 'selected')
 
+    var scaleSubmit1 = dropdownDiv1.append('p').text('Click to rescale y axis with range from other channel: ')
+      .append('button').attr('type', 'submit').attr('value', 'rescale1').attr('form', 'lineChannelSelect1')
+      .text('rescale1')
+      .on('click', function(){
+        console.log('hello')
+        var sel1 = document.getElementById('lineChannelSelect1')
+        var chosenChannel1 = sel1.options[sel1.selectedIndex].innerText  
+        var sel2 = document.getElementById('lineChannelSelect2')
+        var chosenChannel2 = sel2.options[sel2.selectedIndex].innerText
+        var chosenSeries = document.querySelector('input[name="lineSeriesSelect"]:checked').value
+        chartGroup1.remove()
+        chartGroup1 = svg1.append("g")
+          .attr("transform", `translate(${margin.left}, ${margin.top})`);
+        rescale1(chartGroup1, chosenChannel1, chosenChannel2, chosenSeries)
+  
+      })
+
     var dropdownDiv2 = d3.select('.lineSelect2').append('div').classed('form-group', true).append('label')
       .attr('for', 'lineChannelSelect2')
       .text('Listed by Subscribers Descending');
@@ -81,6 +98,23 @@ function drawInput(){
     })
 
     d3.select('#ASMR_PPOMO_2').attr('selected', 'selected')
+
+    var scaleSubmit2 = dropdownDiv2.append('p').text('Click to rescale y axis with range from other channel: ')
+      .append('button').attr('type', 'submit').attr('value', 'rescale2').attr('form', 'lineChannelSelect2')
+      .text('rescale2')
+      .on('click', function(){
+        console.log('hello')
+        var sel1 = document.getElementById('lineChannelSelect1')
+        var chosenChannel1 = sel1.options[sel1.selectedIndex].innerText  
+        var sel2 = document.getElementById('lineChannelSelect2')
+        var chosenChannel2 = sel2.options[sel2.selectedIndex].innerText
+        var chosenSeries = document.querySelector('input[name="lineSeriesSelect"]:checked').value
+        chartGroup2.remove()
+        chartGroup2 = svg2.append("g")
+          .attr("transform", `translate(${margin.left}, ${margin.top})`);
+        rescale2(chartGroup2, chosenChannel2, chosenChannel1, chosenSeries)
+  
+      })
 
     var series_options = d3.keys(asmr_data[0]['time_series'])
     var radioDiv = d3.select('.seriesSelect').append('div')
@@ -120,8 +154,6 @@ drawInput()
 function drawLine(chartGroup, chosenChannel, chosenSeries) {
 	d3.json('asmr_channels').then(function(asmr_data) {
 
-  // var chosenChannel1 = d3.select('#lineChannelSelect1').attr('value')
-  // var chosenChannel2 = d3.select('#lineChannelSelect2').attr('value')
     asmr_data.forEach(function(data) {
         data.time_series.average_views.forEach(day => {
             day['dates'] = parseTime(day['dates'])
@@ -205,3 +237,169 @@ var chosenChannel2 = 'ASMR PPOMO'
 
 drawLine(chartGroup1, chosenChannel1, chosenSeries)
 drawLine(chartGroup2, chosenChannel2, chosenSeries)
+
+function rescale1(chartGroup, chosenChannel1, chosenChannel2, chosenSeries) {
+  d3.json('asmr_channels').then(function(asmr_data) {
+
+      asmr_data.forEach(function(data) {
+          data.time_series.average_views.forEach(day => {
+              day['dates'] = parseTime(day['dates'])
+          }) 
+          data.time_series.average_views.forEach(day => {
+              day['average_views'] = Math.abs(+day['average_views'])
+          }) 
+          data.time_series.daily_subs.forEach(day => {
+              day['dates'] = parseTime(day['dates'])
+          }) 
+          data.time_series.daily_subs.forEach(day => {
+              day['daily_subs'] = +day['daily_subs']
+          }) 
+          data.time_series.daily_views.forEach(day => {
+              day['dates'] = parseTime(day['dates'])
+          }) 
+          data.time_series.daily_views.forEach(day => {
+              day['daily_views'] = +day['daily_views']
+          }) 
+          data.time_series.monthly_views.forEach(day => {
+              day['dates'] = parseTime(day['dates'])
+          }) 
+          data.time_series.monthly_views.forEach(day => {
+              day['monthly_views'] = +day['monthly_views']
+          }) 
+          data.time_series.total_subs.forEach(day => {
+              day['dates'] = parseTime(day['dates'])
+          }) 
+          data.time_series.total_subs.forEach(day => {
+              day['total_subs'] = +day['total_subs']
+          }) 
+          data.time_series.total_views.forEach(day => {
+              day['dates'] = parseTime(day['dates'])
+          }) 
+          data.time_series.total_views.forEach(day => {
+              day['total_views'] = +day['total_views']
+          }) 
+      })
+
+  var channelThis = asmr_data.filter(datum => datum.channel_name == chosenChannel1)[0]
+  console.log(channelThis)
+  var channelThat = asmr_data.filter(datum => datum.channel_name == chosenChannel2)[0]
+  console.log(channelThat)
+
+  var xTimeScale = d3.scaleTime()
+    .range([0, chartWidth])
+    .domain(d3.extent(channelThis.time_series[chosenSeries], data => data.dates))
+    
+    var yLinearScale = d3.scaleLinear()
+    .range([chartHeight, 0])
+    .domain([0, d3.max(channelThat.time_series[chosenSeries], data => data[chosenSeries])])
+    
+    var bottomAxis = d3.axisBottom(xTimeScale)
+    var leftAxis = d3.axisLeft(yLinearScale)
+
+    var drawLine = d3.line()
+    .x(data => xTimeScale(data.dates))
+    .y(data => yLinearScale(data[chosenSeries]))
+    .curve(d3.curveMonotoneX)
+
+    chartGroup.append("path")
+    // The drawLine function returns the instructions for creating the line for asmr_data
+    .attr("d", drawLine(channelThis.time_series[chosenSeries]))
+    .classed("line", true);
+
+    chartGroup.append("g")
+    .classed("axis", true)
+    .attr('id', 'yaxis')
+    .call(leftAxis);
+
+    chartGroup.append("g")
+    .classed("axis", true)
+    .attr('id', 'xaxis')
+    .attr("transform", `translate(0, ${chartHeight})`)
+    .call(bottomAxis);
+  })
+  
+}
+function rescale2(chartGroup, chosenChannel2, chosenChannel1, chosenSeries) {
+  d3.json('asmr_channels').then(function(asmr_data) {
+
+      asmr_data.forEach(function(data) {
+          data.time_series.average_views.forEach(day => {
+              day['dates'] = parseTime(day['dates'])
+          }) 
+          data.time_series.average_views.forEach(day => {
+              day['average_views'] = Math.abs(+day['average_views'])
+          }) 
+          data.time_series.daily_subs.forEach(day => {
+              day['dates'] = parseTime(day['dates'])
+          }) 
+          data.time_series.daily_subs.forEach(day => {
+              day['daily_subs'] = +day['daily_subs']
+          }) 
+          data.time_series.daily_views.forEach(day => {
+              day['dates'] = parseTime(day['dates'])
+          }) 
+          data.time_series.daily_views.forEach(day => {
+              day['daily_views'] = +day['daily_views']
+          }) 
+          data.time_series.monthly_views.forEach(day => {
+              day['dates'] = parseTime(day['dates'])
+          }) 
+          data.time_series.monthly_views.forEach(day => {
+              day['monthly_views'] = +day['monthly_views']
+          }) 
+          data.time_series.total_subs.forEach(day => {
+              day['dates'] = parseTime(day['dates'])
+          }) 
+          data.time_series.total_subs.forEach(day => {
+              day['total_subs'] = +day['total_subs']
+          }) 
+          data.time_series.total_views.forEach(day => {
+              day['dates'] = parseTime(day['dates'])
+          }) 
+          data.time_series.total_views.forEach(day => {
+              day['total_views'] = +day['total_views']
+          }) 
+      })
+  console.log(chosenChannel2)
+  console.log(chosenChannel1)
+  console.log(chosenSeries)
+
+  var channelThis = asmr_data.filter(datum => datum.channel_name == chosenChannel2)[0]
+  console.log(channelThis)
+  var channelThat = asmr_data.filter(datum => datum.channel_name == chosenChannel1)[0]
+  console.log(channelThat)
+
+  var xTimeScale = d3.scaleTime()
+    .range([0, chartWidth])
+    .domain(d3.extent(channelThis.time_series[chosenSeries], data => data.dates))
+    
+    var yLinearScale = d3.scaleLinear()
+    .range([chartHeight, 0])
+    .domain([0, d3.max(channelThat.time_series[chosenSeries], data => data[chosenSeries])])
+    
+    var bottomAxis = d3.axisBottom(xTimeScale)
+    var leftAxis = d3.axisLeft(yLinearScale)
+
+    var drawLine = d3.line()
+    .x(data => xTimeScale(data.dates))
+    .y(data => yLinearScale(data[chosenSeries]))
+    .curve(d3.curveMonotoneX)
+
+    chartGroup.append("path")
+    // The drawLine function returns the instructions for creating the line for asmr_data
+    .attr("d", drawLine(channelThis.time_series[chosenSeries]))
+    .classed("line", true);
+
+    chartGroup.append("g")
+    .classed("axis", true)
+    .attr('id', 'yaxis')
+    .call(leftAxis);
+
+    chartGroup.append("g")
+    .classed("axis", true)
+    .attr('id', 'xaxis')
+    .attr("transform", `translate(0, ${chartHeight})`)
+    .call(bottomAxis);
+  })
+  
+}
