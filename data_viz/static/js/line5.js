@@ -60,7 +60,8 @@ function drawInput(){
     
     d3.select('#ASMR_Darling_1').attr('selected', 'selected')
 
-    var scaleSubmit1 = dropdownDiv1.append('button').attr('type', 'submit').attr('value', 'rescale1').attr('form', 'lineChannelSelect1')
+    var scaleSubmit1 = dropdownDiv1.append('p').text('Click to rescale y axis with range from other channel: ')
+      .append('button').attr('type', 'submit').attr('value', 'rescale1').attr('form', 'lineChannelSelect1')
       .text('rescale1')
       .on('click', function(){
         console.log('hello')
@@ -68,6 +69,7 @@ function drawInput(){
         var chosenChannel1 = sel1.options[sel1.selectedIndex].innerText  
         var sel2 = document.getElementById('lineChannelSelect2')
         var chosenChannel2 = sel2.options[sel2.selectedIndex].innerText
+        var chosenSeries = document.querySelector('input[name="lineSeriesSelect"]:checked').value
         chartGroup1.remove()
         chartGroup1 = svg1.append("g")
           .attr("transform", `translate(${margin.left}, ${margin.top})`);
@@ -92,12 +94,13 @@ function drawInput(){
       chartGroup2 = svg2.append("g")
         .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
-      rescale(chartGroup2, chosenChannel2, chosenSeries)
+      drawLine(chartGroup2, chosenChannel2, chosenSeries)
     })
 
     d3.select('#ASMR_PPOMO_2').attr('selected', 'selected')
 
-    var scaleSubmit2 = dropdownDiv2.append('button').attr('type', 'submit').attr('value', 'rescale2').attr('form', 'lineChannelSelect2')
+    var scaleSubmit2 = dropdownDiv2.append('p').text('Click to rescale y axis with range from other channel: ')
+      .append('button').attr('type', 'submit').attr('value', 'rescale2').attr('form', 'lineChannelSelect2')
       .text('rescale2')
       .on('click', function(){
         console.log('hello')
@@ -105,6 +108,7 @@ function drawInput(){
         var chosenChannel1 = sel1.options[sel1.selectedIndex].innerText  
         var sel2 = document.getElementById('lineChannelSelect2')
         var chosenChannel2 = sel2.options[sel2.selectedIndex].innerText
+        var chosenSeries = document.querySelector('input[name="lineSeriesSelect"]:checked').value
         chartGroup2.remove()
         chartGroup2 = svg2.append("g")
           .attr("transform", `translate(${margin.left}, ${margin.top})`);

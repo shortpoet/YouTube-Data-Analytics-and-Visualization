@@ -41,15 +41,15 @@ function drawTable(endpoint) {
 		var sortAscending = true
 		header.on('click',function(d, i) {
 			var sort_value = d3.select(this).attr('value')
-			var numeric = headers.slice(5, 8)
+			var numeric = headers.slice(1, 8)
+			console.log(headers)
 			console.log(numeric)
-			console.log(sort_value)
 			if (sortAscending === true) {
 				if (numeric.includes(sort_value)) {
 					content.sort((a,b) => d3.ascending(parseFloat(a[sort_value]), parseFloat(b[sort_value])))
 				}
 				else {
-					content.sort((a,b) => d3.ascending(a[sort_value], b[sort_value]))
+					content.sort((a,b) => d3.ascending(a[sort_value].toLowerCase().replace(/\s/g, ''), b[sort_value].toLowerCase().replace(/\s/g, '')))
 				}
 				sortAscending = false
 				d3.select(this).attr('class', 'asc')
@@ -58,7 +58,7 @@ function drawTable(endpoint) {
 					content.sort((a,b) => d3.descending(parseFloat(a[sort_value]), parseFloat(b[sort_value])))
 				}
 				else {
-					content.sort((a,b) => d3.descending(a[sort_value], b[sort_value]))
+					content.sort((a,b) => d3.descending(a[sort_value].toLowerCase().replace(/\s/g, ''), b[sort_value].toLowerCase().replace(/\s/g, '')))
 				}
 				sortAscending = true
 				d3.select(this).attr('class', 'desc')
